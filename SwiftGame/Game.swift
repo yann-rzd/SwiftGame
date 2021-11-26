@@ -8,11 +8,11 @@
 import Foundation
 
 class Game {
-    var gameLaunched = false
-    var numberOfPlayers = 0
     var players: [Player] = []
-    static let minPlayers = 2 // Minimum de joueurs pour lancer la partie
-    static let maxPlayers = 5 // Maximum de joueurs pour lancer la partie 
+    var numberOfPlayers = 0 // Faire une propriété calculée
+    let numberOfPlayersRange = 2..<5
+    var numberOfRounds = 0 // Faire une popriété calculée
+    var isGameOver = false
     
     // Démarrer la partie
     func start() {
@@ -22,7 +22,6 @@ class Game {
             switch choice {
             case "yes":
                 print("You just started a new game!")
-                gameLaunched = true
                 askNumberOfPlayers()
                 for i in 1...numberOfPlayers {
                     print("The player \(i) must create his team ✨")
@@ -35,7 +34,7 @@ class Game {
             case "no":
                 print("Ok, see you next time!")
             default:
-                print("I don't understand.")
+                print("I don't understand ❌")
             }
         }
     }
@@ -46,16 +45,10 @@ class Game {
         
         if let answer = readLine() {
             if let number = Int(answer) {
-                switch number {
-                case _ where (Game.minPlayers <= number || number <= Game.maxPlayers):
-                    numberOfPlayers = number
-                    print("You want to play with \(number) players.")
-                case _ where number < Game.minPlayers:
-                    print("You must choose at least \(Game.minPlayers) players to start the game.")
-                case _ where number > Game.maxPlayers:
-                    print("You must choose a maximum of \(Game.maxPlayers) players to start the game.")
-                default:
-                    print("I don't understand.")
+                if numberOfPlayersRange.contains(number) {
+                    print("You want to play with \(number) players. You must enter a number between 2 and 5 inclusive")
+                } else {
+                    print("I don't understand ❌")
                 }
             }
         }
@@ -69,7 +62,7 @@ class Game {
             print("Your player is \(name)!")
             return name
         }
-        print("I don't understand.")
+        print("I don't understand ❌")
         return nil
     }
     
@@ -79,19 +72,19 @@ class Game {
             let newPlayer = Player(name: playerName)
             return newPlayer
         }
-        print("I don't understand.")
+        print("I don't understand ❌")
         return nil
     }
     
     // Choisir le nom d'un guerrier
-    private func readWarriorName() -> String? {
+    private func askWarriorName() -> String? {
         print("Choose the name of the warrior:")
         
         if let name = readLine() {
             print("You have just created the warrior \(name)!")
             return name
         }
-        print("I don't understand.")
+        print("I don't understand ❌")
         return nil
     }
     
@@ -127,7 +120,7 @@ class Game {
     }
     
     // Choisir l'arme d'un guerrier
-    private func readWarriorWeapon() throws -> Weapon {
+    private func askWarriorWeapon() throws -> Weapon {
         
         print(getChoseWeaponInstruction())
         
@@ -149,15 +142,13 @@ class Game {
         
         print("Your warrior draws \(selectedWeapon.description) !")
         return selectedWeapon
-        
-        
     }
     
     // Créer un guerrier
     private func createWarrior() -> Warrior? {
-        if let warriorName = readWarriorName() {
+        if let warriorName = askWarriorName() {
             do {
-                let weapon = try readWarriorWeapon()
+                let weapon = try askWarriorWeapon()
                 let newWarrior = Warrior(name: warriorName, weapon: weapon)
                 return newWarrior
             } catch {
@@ -166,7 +157,7 @@ class Game {
                 return nil
             }
         }
-        print("I don't understand.")
+        print("I don't understand ❌")
         return nil
     }
 }

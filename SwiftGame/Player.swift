@@ -8,7 +8,8 @@
 import Foundation
 
 class Player {
-    var name: String
+    let name: String
+    var isEliminated = false
     var team = [Warrior]()
     
     init(name: String) {
@@ -16,17 +17,27 @@ class Player {
     }
     
     // Choisir le guerrier qui faire l'action
-    func chooseMyWarrior(warriorName: String) {
+    private func chooseMyWarrior(warriorIndex: Int) {
         
     }
     
     // Choisir le joueur cible
-    func chooseTargetPlayer(playerName: String) {
+    private func chooseTargetPlayer(playerIndex: Int) {
         
     }
     
     // Choisir le guerrier cible
-    func chooseTargetWarrior(warriorName: String) {
+    private func chooseTargetWarrior(warriorIndex: Int) {
+        
+    }
+    
+    // Jouer son tour
+    func playTurn(players: [Player]) {
+        
+    }
+    
+    // Afficher l'état de son équipe
+    func displayTeam() {
         
     }
 }

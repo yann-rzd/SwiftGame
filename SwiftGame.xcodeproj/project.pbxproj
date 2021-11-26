@@ -67,12 +67,12 @@
 		E489444A2746BFBB008C00B8 /* SwiftGame */ = {
 			isa = PBXGroup;
 			children = (
-				E4D25A5F274FFEF0001BC80F /* Game.swift */,
 				E4D25A5C274FFEF0001BC80F /* main.swift */,
+				E4D25A5F274FFEF0001BC80F /* Game.swift */,
 				E4D25A5A274FFEF0001BC80F /* Player.swift */,
-				E4D25A5B274FFEF0001BC80F /* Trunk.swift */,
 				E4D25A5E274FFEF0001BC80F /* Warrior.swift */,
 				E4D25A5D274FFEF0001BC80F /* Weapon.swift */,
+				E4D25A5B274FFEF0001BC80F /* Trunk.swift */,
 			);
 			path = SwiftGame;
 			sourceTree = "<group>";

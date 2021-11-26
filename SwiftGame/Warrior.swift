@@ -8,8 +8,10 @@
 import Foundation
 
 class Warrior {
-    var name: String
-    var life = 100
+    let name: String
+    let maxLife = 100
+    var currentLife = 100 // Faire une propriété calculée
+    var isAlive = true // Faire une propriété calculée
     var weapon: Weapon
     
     init(name: String, weapon: Weapon) {
@@ -23,7 +25,12 @@ class Warrior {
     }
     
     // Soigner
-    func treat() {
+    func heal() {
+        
+    }
+    
+    // Afficher les informations du guerrier
+    func displayInformation() {
         
     }
 }

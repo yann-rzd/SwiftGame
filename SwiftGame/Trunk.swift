@@ -8,11 +8,9 @@
 import Foundation
 
 class Trunk {
-    var name: String
     var weapon: Weapon
     
-    init(name: String, weapon: Weapon) {
-        self.name = name
+    init(weapon: Weapon) {
         self.weapon = weapon
     }
     
