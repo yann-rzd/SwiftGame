@@ -11,7 +11,7 @@ class Game {
     var players: [Player] = []
     var numberOfPlayers = 0 // Faire une propriété calculée
     let numberOfPlayersRange = 2..<5
-    var numberOfRounds = 0 // Faire une popriété calculée
+    var numberOfRounds = 1 // Faire une popriété calculée
     var isGameOver = false
     
     // Démarrer la partie
@@ -37,16 +37,19 @@ class Game {
                 print("I don't understand ❌")
             }
         }
+        
+        playRound()
     }
         
     // Demander le nombre de joueur
     private func askNumberOfPlayers() {
-        print("How many players do you want to play with?")
+        print("How many players do you want to play with? You must enter a number between 2 and 5 inclusive.")
         
         if let answer = readLine() {
             if let number = Int(answer) {
                 if numberOfPlayersRange.contains(number) {
-                    print("You want to play with \(number) players. You must enter a number between 2 and 5 inclusive")
+                    print("You want to play with \(number) players.")
+                    numberOfPlayers = number
                 } else {
                     print("I don't understand ❌")
                 }
@@ -159,5 +162,18 @@ class Game {
         }
         print("I don't understand ❌")
         return nil
+    }
+    
+    // Jouer un round (tous les joueurs doivent jouer une fois)
+    func playRound() {
+        while isGameOver == false {
+            print("---------------------------------------- ⚔️ Round number \(numberOfRounds) starts now ⚔️ ----------------------------------------")
+            for i in 0..<players.count {
+                print("Now it's player #\(i + 1)'s turn. Let's go \(players[i].name)!")
+                players[i].playTurn()
+            }
+            print("Round number \(numberOfRounds) is now over. Round number \(numberOfRounds + 1) is about to begin!")
+            numberOfRounds += 1
+        }
     }
 }
