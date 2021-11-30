@@ -21,17 +21,17 @@ class Warrior {
     }
     
     //Le guerrier joue son tour
-    func warriorAction() {
+    func performWarriorAction(targetWarrior: Warrior) {
         print("Do you want to attack ⚔️ or heal 🩹? (press 1 for attack, 2 for heal")
         
         if let answer = readLine() {
             if let choice = Int(answer) {
                 if choice == 1 {
                     print("Your warrior attack ⚔️")
-                    attack(attackerWarrior: Warrior, targetedWarrior: Warrior)
+                    attack(warrior: targetWarrior)
                 } else if choice == 2 {
                     print("Your warrior heal 🩹")
-                    heal(healerWarrior: Warrior, targetedWarrior: Warrior)
+                    heal(warrior: targetWarrior)
                 } else {
                     print("I don't understand ❌")
                 }
@@ -40,29 +40,33 @@ class Warrior {
     }
     
     // Attaquer
-    func attack(attackerWarrior: Warrior, targetedWarrior: Warrior) { // Comment récupérer attackerWarrior et targetedWarrior ?
-        if attackerWarrior.isAlive == true {
-            targetedWarrior.currentLife = targetedWarrior.currentLife - attackerWarrior.weapon.damagePerHit
+    func attack(warrior: Warrior) {
+        if isAlive == true && warrior.isAlive == true {
+            warrior.currentLife = warrior.currentLife - weapon.damagePerHit
             
-            if targetedWarrior.currentLife <= lifeRange.lowerBound {
-                targetedWarrior.currentLife = lifeRange.lowerBound
-                targetedWarrior.isAlive == false
-                print("The warrior ... is dead 💀")
+            if warrior.currentLife <= lifeRange.lowerBound {
+                warrior.currentLife = lifeRange.lowerBound
+                warrior.isAlive = false
+                print("This warrior is dead 💀")
             }
-        } else {
-            print("This warrior is dead 💀")
+        } else if isAlive == true && warrior.isAlive == false {
+            print("This warrior is already dead 💀")
+        } else if isAlive == false {
+            print("Your warrior is already dead 💀")
         }
     }
     
     // Soigner
-    func heal(healerWarrior: Warrior, targetedWarrior: Warrior) { // Comment récupérer healerWarrior et targetedWarrior ?
+    func heal(warrior: Warrior) {
         if isAlive == true {
-            targetedWarrior.currentLife = targetedWarrior.currentLife + healAmountOfLife
-            if targetedWarrior.currentLife > lifeRange.upperBound {
-                targetedWarrior.currentLife = lifeRange.upperBound
+            warrior.currentLife = warrior.currentLife + healAmountOfLife
+            if warrior.currentLife > lifeRange.upperBound {
+                warrior.currentLife = lifeRange.upperBound
             }
-        } else {
-            print("This warrior is already out 💀")
+        } else if isAlive == true && warrior.isAlive == false {
+            print("This warrior is already dead 💀")
+        } else if isAlive == false {
+            print("Your warrior is already dead 💀")
         }
     }
     

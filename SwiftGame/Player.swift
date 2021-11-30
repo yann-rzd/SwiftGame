@@ -21,8 +21,7 @@ class Player {
         if newGame.isGameOver == false {
             if isEliminated == false {
                 displayTeams()
-                chooseMyWarrior()
-                chooseTargetWarrior(playerIndex: chooseTargetPlayer()!)
+                chooseMyWarrior()?.performWarriorAction(targetWarrior: chooseTargetWarrior(playerIndex: chooseTargetPlayer()!)!)
             } else {
                 print("You have no warriors alive 😢. So you skip your turn ❌.")
             }
@@ -53,6 +52,7 @@ class Player {
     
     // Choisir le guerrier qui faire l'action
     private func chooseMyWarrior() -> Warrior? {
+        var myWarrior: Warrior
         print("Which warrior do you want to attack with? (Enter the number of your warrior)")
         
         if let warrior = readLine() {
@@ -60,7 +60,8 @@ class Player {
                 warriorIndex -= 1
                 if warriorIndex <= team.count && team[warriorIndex].isAlive {
                     print("The warrior \(team[warriorIndex].name) takes action!")
-                    return team[warriorIndex]
+                    myWarrior = team[warriorIndex]
+                    return myWarrior
                 } else {
                     print("Your must enter a number between 1 and 3 and choose a warrior still alive.")
                 }
@@ -89,13 +90,15 @@ class Player {
     
     // Choisir le guerrier cible
     private func chooseTargetWarrior(playerIndex: Int) -> Warrior? {
+        var targetWarrior: Warrior
         print("Which player \(newGame.players[playerIndex].name)'s warrior do you want to target?")
         
         if let warrior = readLine() {
             if let warriorIndex = Int(warrior) {
                 if warriorIndex <= team.count && team[warriorIndex - 1].isAlive {
                     print("You choose to target the warrior \(newGame.players[playerIndex].team[warriorIndex - 1].name)!")
-                    return newGame.players[playerIndex].team[warriorIndex - 1]
+                    targetWarrior = newGame.players[playerIndex].team[warriorIndex - 1]
+                    return targetWarrior
                 } else {
                     print("You must select the number of the warrior still alive you want to target.")
                 }
