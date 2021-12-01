@@ -167,10 +167,32 @@ class Game {
     // Jouer un round (tous les joueurs doivent jouer une fois)
     func playRound() {
         while isGameOver == false {
-            print("---------------------------------------- ⚔️ Round number \(numberOfRounds) starts now ⚔️ ----------------------------------------")
+            print("+++++++++++++++++++++++++++++++++++ ⚔️ Round number \(numberOfRounds) starts now ⚔️ +++++++++++++++++++++++++++++++++++")
             for i in 0..<players.count {
-                print("Now it's player #\(i + 1)'s turn. Let's go \(players[i].name)!")
-                players[i].playTurn()
+                if players[i].isEliminated == false {
+                    print("--------------- Now it's player #\(i + 1)'s turn. Let's go \(players[i].name) ❗️ ---------------")
+                    players[i].playTurn()
+                    
+                    for warrior in players[i].team {
+                        if warrior.isAlive == false {
+                            players[i].isEliminated = true
+                            print("The player \(players[i + 1]) \(players[i].name ) has no more warriors alive 😢 The game is over for him 💀")
+                        }
+                    }
+                    
+                    let checkWinner = players.filter {player in
+                        return player.isEliminated == false
+                    }
+                    
+                    if checkWinner.count <= 1 {
+                        print("The player \(checkWinner[0].name) won the game ! 🎉🎉🎉🎉🎉🎉 Congratulations 🎉🎉🎉🎉🎉🎉") // Comment récuprer le nom du gagnant ?
+                        isGameOver = true
+                        print("**********************************************  End of the game **********************************************")
+                    }
+
+                } else {
+                    print("The player \(players[i + 1]) \(players[i].name) is eliminated. So he skips his turn ❌")
+                }
             }
             print("Round number \(numberOfRounds) is now over. Round number \(numberOfRounds + 1) is about to begin!")
             numberOfRounds += 1

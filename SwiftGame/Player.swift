@@ -37,7 +37,7 @@ class Player {
                 for i in 0..<newGame.players.count {
                     print("This is the team of player \(i + 1), \(newGame.players[i].name):")
                     for j in 0..<team.count {
-                        print("Warrior number \(j + 1) -> \(newGame.players[i].team[j].name):"
+                        print("\(j + 1). Warrior named \(newGame.players[i].team[j].name) --------------------------------"
                               + "\n- \(newGame.players[i].team[j].name)'s life = \(newGame.players[i].team[j].currentLife)"
                               + "\n- \(newGame.players[i].team[j].name)'s weapon = \(newGame.players[i].team[j].weapon.description)" + "\n)")
                     }
