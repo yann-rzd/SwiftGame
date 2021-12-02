@@ -62,8 +62,16 @@ class Game {
         print("Choose the name of your player:")
         
         if let name = readLine() {
-            print("Your player is \(name)!")
-            return name
+            if (name.hasPrefix(" ") || name.hasSuffix(" ")) && name.count > 20 {
+                print("Your name must not contain spaces and not exceed 20 characters.")
+            } else if name.count > 20 {
+                print("Your name must not exceed 20 characters.")
+            } else if name.hasPrefix(" ") || name.hasSuffix(" ") {
+                print("Your name must not contain spaces")
+            } else {
+                print("Your player is \(name)!")
+                return name
+            }
         }
         print("I don't understand ❌")
         return nil
@@ -84,8 +92,16 @@ class Game {
         print("Choose the name of the warrior:")
         
         if let name = readLine() {
-            print("You have just created the warrior \(name)!")
-            return name
+            if (name.hasPrefix(" ") || name.hasSuffix(" ")) && name.count > 20 {
+                print("Your name must not contain spaces and not exceed 20 characters.")
+            } else if name.count > 20 {
+                print("Your name must not exceed 20 characters.")
+            } else if name.hasPrefix(" ") || name.hasSuffix(" ") {
+                print("Your name must not contain spaces")
+            } else {
+                print("Your player is \(name)!")
+                return name
+            }
         }
         print("I don't understand ❌")
         return nil
