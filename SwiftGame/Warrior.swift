@@ -41,13 +41,30 @@ class Warrior {
     
     // Attaquer
     func attack(warrior: Warrior) {
+        let randomInt = Int.random(in: 1...100)
         if isAlive == true && warrior.isAlive == true {
-            warrior.currentLife = warrior.currentLife - weapon.damagePerHit
-            
-            if warrior.currentLife <= lifeRange.lowerBound {
-                warrior.currentLife = lifeRange.lowerBound
-                warrior.isAlive = false
-                print("This warrior is dead 💀")
+            if randomInt < 90 {
+                warrior.currentLife = warrior.currentLife - weapon.damagePerHit
+                
+                if warrior.currentLife <= lifeRange.lowerBound {
+                    warrior.currentLife = lifeRange.lowerBound
+                    warrior.isAlive = false
+                    print("This warrior is dead 💀")
+                }
+            } else {
+                let trunkIsOpening = "A trunk appears! It contains a weapon... It is"
+                let trunk = Trunk()
+                let trunkOpened = trunk.open()
+                print("\(trunkIsOpening) \(trunkOpened.description) !")
+                
+                warrior.currentLife = warrior.currentLife - trunkOpened.damagePerHit
+                
+                if warrior.currentLife <= lifeRange.lowerBound {
+                    warrior.currentLife = lifeRange.lowerBound
+                    warrior.isAlive = false
+                    print("This warrior is dead 💀")
+                }
+                
             }
         } else if isAlive == true && warrior.isAlive == false {
             print("This warrior is already dead 💀")

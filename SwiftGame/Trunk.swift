@@ -8,14 +8,13 @@
 import Foundation
 
 class Trunk {
-    var weapon: Weapon
-    
-    init(weapon: Weapon) {
-        self.weapon = weapon
-    }
     
     // Ouvrir la caisse
-    func open() {
+    func open() -> Weapon {
+        let weapon: Weapon
+        let trunkIsOpening = "A trunk appears! It contains a weapon... It is"
+        weapon = Weapon.allCases.randomElement()!
         
+        return weapon
     }
 }
