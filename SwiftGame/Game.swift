@@ -8,11 +8,18 @@
 import Foundation
 
 class Game {
-    var players: [Player] = []
-    var numberOfPlayers = 0 // Faire une propriété calculée
-    let numberOfPlayersRange = 2..<5
-    var numberOfRounds = 1 // Faire une popriété calculée
-    var isGameOver = false
+    private var players: [Player] = []
+    private var numberOfPlayers = 0 // Faire une propriété calculée
+    private let numberOfPlayersRange = 2..<5
+    private var numberOfRounds = 1 // Faire une popriété calculée
+    
+    private var isFightPhaseOver: Bool {
+        remainingPlayers.count <= 1
+    }
+    
+    private var remainingPlayers: [Player] {
+        players.filter { !$0.isEliminated }
+    }
     
     // Démarrer la partie
     func start() {
@@ -38,7 +45,8 @@ class Game {
             }
         }
         
-        playRound()
+        startFightPhase()
+        displayWinner()
     }
         
     // Demander le nombre de joueur
@@ -138,7 +146,7 @@ class Game {
         }
     }
     
-    // Choisir l'arme d'un guerrier
+    /// Choisir l'arme d'un guerrier
     private func askWarriorWeapon() throws -> Weapon {
         
         print(getChoseWeaponInstruction())
@@ -163,7 +171,8 @@ class Game {
         return selectedWeapon
     }
     
-    // Créer un guerrier
+    /// Créer un guerrier
+    /// - Returns: the created warrior
     private func createWarrior() -> Warrior? {
         if let warriorName = askWarriorName() {
             do {
@@ -181,37 +190,44 @@ class Game {
     }
     
     // Jouer un round (tous les joueurs doivent jouer une fois)
-    func playRound() {
-        while isGameOver == false {
-            print("+++++++++++++++++++++++++++++++++++ ⚔️ Round number \(numberOfRounds) starts now ⚔️ +++++++++++++++++++++++++++++++++++")
-            for i in 0..<players.count {
-                if players[i].isEliminated == false {
-                    print("--------------- Now it's player #\(i + 1)'s turn. Let's go \(players[i].name) ❗️ ---------------")
-                    players[i].playTurn()
-                    
-                    for warrior in players[i].team {
-                        if warrior.isAlive == false {
-                            players[i].isEliminated = true
-                            print("The player \(players[i + 1]) \(players[i].name ) has no more warriors alive 😢 The game is over for him 💀")
-                        }
-                    }
-                    
-                    let checkWinner = players.filter {player in
-                        return player.isEliminated == false
-                    }
-                    
-                    if checkWinner.count <= 1 {
-                        print("The player \(checkWinner[0].name) won the game ! 🎉🎉🎉🎉🎉🎉 Congratulations 🎉🎉🎉🎉🎉🎉") // Comment récuprer le nom du gagnant ?
-                        isGameOver = true
-                        print("**********************************************  End of the game **********************************************")
-                    }
-
-                } else {
-                    print("The player \(players[i + 1]) \(players[i].name) is eliminated. So he skips his turn ❌")
-                }
-            }
-            print("Round number \(numberOfRounds) is now over. Round number \(numberOfRounds + 1) is about to begin!")
+    private func startFightPhase() {
+        while !isFightPhaseOver {
             numberOfRounds += 1
+            print("+++++++++++++++++++++++++++++++++++ ⚔️ Round number \(numberOfRounds) starts now ⚔️ +++++++++++++++++++++++++++++++++++")
+          
+            
+            for (playerIndex, player) in players.enumerated() {
+                
+                guard !player.isEliminated else {
+                    print("The player \(players[playerIndex + 1]) \(player.name) is eliminated. So he skips his turn ❌")
+                    continue
+                }
+                
+                print("--------------- Now it's player #\(playerIndex + 1)'s turn. Let's go \(player.name) ❗️ ---------------")
+                player.playTurn(players: players)
+                
+             
+                guard !isFightPhaseOver else {
+                    break
+                }
+                
+                
+            }
+            print("Round number \(numberOfRounds) is now over.")
         }
+        
+
+    }
+    
+    private func displayWinner() {
+        guard
+            remainingPlayers.count == 1,
+            let winningPlayer = remainingPlayers.first else {
+            print("There is no winner")
+            return
+        }
+        
+        print("The player \(winningPlayer.name) won the game ! 🎉🎉🎉🎉🎉🎉 Congratulations 🎉🎉🎉🎉🎉🎉") // Comment récuprer le nom du gagnant ?
+        print("**********************************************  End of the game **********************************************")
     }
 }

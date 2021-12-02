@@ -12,7 +12,6 @@ class Trunk {
     // Ouvrir la caisse
     func open() -> Weapon {
         let weapon: Weapon
-        let trunkIsOpening = "A trunk appears! It contains a weapon... It is"
         weapon = Weapon.allCases.randomElement()!
         
         return weapon

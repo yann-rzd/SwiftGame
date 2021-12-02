@@ -7,9 +7,9 @@
 
 import Foundation
 
-var newGame = Game()
+private let game = Game()
+game.start()
 
-while true {
-    newGame.start()
-}
+
+
 

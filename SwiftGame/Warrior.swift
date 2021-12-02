@@ -9,8 +9,8 @@ import Foundation
 
 class Warrior {
     let name: String
-    let lifeRange = 0...100
-    var currentLife = 100 // Faire une propriété calculée
+    let lifeRange = 0...5
+    var currentLife = 5 // Faire une propriété calculée
     var isAlive = true // Faire une propriété calculée
     var weapon: Weapon
     let healAmountOfLife = 15
@@ -39,8 +39,16 @@ class Warrior {
         }
     }
     
+    
+    // Afficher les informations du guerrier
+    func displayInformation() {
+        print("\(name)'s life = \(currentLife)")
+        print("\(name)'s weapon = \(weapon.description)")
+
+    }
+    
     // Attaquer
-    func attack(warrior: Warrior) {
+    private func attack(warrior: Warrior) {
         let randomInt = Int.random(in: 1...100)
         if isAlive == true && warrior.isAlive == true {
             if randomInt < 90 {
@@ -74,7 +82,7 @@ class Warrior {
     }
     
     // Soigner
-    func heal(warrior: Warrior) {
+    private func heal(warrior: Warrior) {
         if isAlive == true {
             warrior.currentLife = warrior.currentLife + healAmountOfLife
             if warrior.currentLife > lifeRange.upperBound {
@@ -87,8 +95,5 @@ class Warrior {
         }
     }
     
-    // Afficher les informations du guerrier
-    func displayInformation() {
-        
-    }
+    
 }
