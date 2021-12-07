@@ -20,6 +20,25 @@ class Player {
         self.name = name
     }
     
+    enum Error: Swift.Error {
+        case terminalError
+        case inputIsNotAnInteger
+        case inputIsNotOneOrTwo
+        case indexInputIsNotInBound
+        case selectedWarriorIsDead
+        
+        
+        var description: String {
+            switch self {
+            case .selectedWarriorIsDead: return "selectedWarriorIsDead"
+            case .indexInputIsNotInBound: return "indexInputIsNotInBound"
+            case .inputIsNotOneOrTwo: return "inputIsNotOneOrTwo"
+            case .terminalError: return "terminalError"
+            case .inputIsNotAnInteger: return "inputIsNotAnInteger"
+            }
+        }
+    }
+    
     // Jouer son tour
     func playTurn(players: [Player]) {
         guard !isEliminated else {
@@ -27,13 +46,19 @@ class Player {
             return
         }
         
-        displayTeams(players: players)
+        do {
+            try displayTeams(players: players)
+        } catch {
+            if let error = error as? Error {
+                print(error.description)
+            }
+        }
         
         let targetPlayer = loopChoosePlayer(from: players)
         let warriorMakingAction = loopChooseWarrior(from: self)
         let targetWarrior = loopChooseWarrior(from: targetPlayer)
         
-        warriorMakingAction.performWarriorAction(targetWarrior: targetWarrior)
+        try? warriorMakingAction.performWarriorAction(targetWarrior: targetWarrior)
     }
     
     private func loopChooseWarrior(from player: Player) -> Warrior {
@@ -51,31 +76,35 @@ class Player {
                 return chosenElement
             } catch {
                 if let error = error as? Error {
-                    print(error.testDescription)
+                    print(error.description)
                 }
             }
         }
     }
     
     // Afficher l'état de son équipe
-    func displayTeams(players: [Player]) {
-        print("Do you want to display the teams? (yes or no)")
-              
-        if let answer = readLine() {
-            if answer.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == "yes" {
-                
-                for (index, player) in players.enumerated() {
-                    print("This is the team of player \(index + 1), \(player.name):")
-                    player.displayOwnTeam()
-                }
-                
-                
+    func displayTeams(players: [Player]) throws {
+        print("Do you want to display the teams? (print 1 for yes, 2 for no)")
         
-            } else if answer == "no" {
-                print("So let's get down to business!")
-            } else {
-                print("I don't understand ❌")
+        guard let answer = readLine() else {
+            throw Error.terminalError
+        }
+        
+        guard let number = Int(answer) else {
+            throw Error.inputIsNotAnInteger
+        }
+        
+        guard number == 1 || number == 2 else {
+            throw Error.inputIsNotOneOrTwo
+        }
+              
+        if number == 1 {
+            for (index, player) in players.enumerated() {
+                print("This is the team of player \(index + 1), \(player.name):")
+                player.displayOwnTeam()
             }
+        } else if number == 2 {
+            print("So let's get down to business!")
         }
     }
     
@@ -83,24 +112,6 @@ class Player {
         for (index, warrior) in team.enumerated() {
             print("\(index + 1). Warrior named \(warrior.name) --------------------------------")
             warrior.displayInformation()
-        }
-    }
-    
-    
-    enum Error: Swift.Error {
-        case terminalError
-        case inputIsNotAnInteger
-        case indexInputIsNotInBound
-        case selectedWarriorIsDead
-        
-        
-        var testDescription: String {
-            switch self {
-            case .selectedWarriorIsDead: return "selectedWarriorIsDead"
-            case .indexInputIsNotInBound: return "indexInputIsNotInBound"
-            case .terminalError: return "terminalError"
-            case .inputIsNotAnInteger: return "inputIsNotAnInteger"
-            }
         }
     }
     

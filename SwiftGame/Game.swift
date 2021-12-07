@@ -21,6 +21,34 @@ class Game {
         players.filter { !$0.isEliminated }
     }
     
+    enum Error: Swift.Error {
+        case failedToReadTerminal
+        case failedToConvertTerminalInputToInteger
+        case failedToAccessElementDueToIndexOutOfBounds
+        case failedToCreateNameDueToWrongFormat
+        case faildeToCreateNameDueToDuplication
+        case failedToNameTheWarrior
+        
+        
+        
+        var description: String {
+            switch self {
+            case .failedToReadTerminal:
+                return "failedToReadTerminal"
+            case .failedToConvertTerminalInputToInteger:
+                return "failedToConvertTerminalInputToInteger"
+            case .failedToAccessElementDueToIndexOutOfBounds:
+                return "failedToAccessElementDueToIndexOutOfBounds"
+            case .failedToCreateNameDueToWrongFormat:
+                return "failedToAccessElementDueToIndexOutOfBounds"
+            case .faildeToCreateNameDueToDuplication:
+                return "faildeToCreateNameDueToDuplication"
+            case .failedToNameTheWarrior:
+                return "failedToNameTheWarrior"
+            }
+        }
+    }
+    
     // Démarrer la partie
     func start() {
         print("Do you want to start a new game?")
@@ -29,12 +57,20 @@ class Game {
             switch choice {
             case "yes":
                 print("You just started a new game!")
-                askNumberOfPlayers()
+                
+                do {
+                    try askNumberOfPlayers()
+                } catch {
+                    if let error = error as? Error {
+                        print(error.description)
+                    }
+                }
+                
                 for i in 1...numberOfPlayers {
                     print("The player \(i) must create his team ✨")
                     let newPlayer = createPlayer()
                     for _ in 1...3 {
-                        newPlayer?.team.append(createWarrior()!)
+                        newPlayer?.team.append(try! createWarrior())
                     }
                     players.append(newPlayer!)
                 }
@@ -50,69 +86,80 @@ class Game {
     }
         
     // Demander le nombre de joueur
-    private func askNumberOfPlayers() {
+    private func askNumberOfPlayers() throws {
         print("How many players do you want to play with? You must enter a number between 2 and 5 inclusive.")
         
-        if let answer = readLine() {
-            if let number = Int(answer) {
-                if numberOfPlayersRange.contains(number) {
-                    print("You want to play with \(number) players.")
-                    numberOfPlayers = number
-                } else {
-                    print("I don't understand ❌")
-                }
-            }
+        guard let answer = readLine() else {
+            throw Error.failedToReadTerminal
         }
+        
+        guard let number = Int(answer) else {
+            throw Error.failedToConvertTerminalInputToInteger
+        }
+        
+        guard numberOfPlayersRange.contains(number) else {
+            throw Error.failedToAccessElementDueToIndexOutOfBounds
+        }
+        
+        print("You want to play with \(number) players.")
+        numberOfPlayers = number
     }
     
     // Choisir le nom du joueur
-    private func choosePlayerName() -> String? {
+    private func choosePlayerName() throws -> String {
         print("Choose the name of your player:")
         
-        if let name = readLine() {
-            if (name.hasPrefix(" ") || name.hasSuffix(" ")) && name.count > 20 {
-                print("Your name must not contain spaces and not exceed 20 characters.")
-            } else if name.count > 20 {
-                print("Your name must not exceed 20 characters.")
-            } else if name.hasPrefix(" ") || name.hasSuffix(" ") {
-                print("Your name must not contain spaces")
-            } else {
-                print("Your player is \(name)!")
-                return name
-            }
+        guard let name = readLine() else {
+            throw Error.failedToReadTerminal
         }
-        print("I don't understand ❌")
-        return nil
+        
+        guard !name.contains(" ") else {
+            throw Error.failedToCreateNameDueToWrongFormat
+        }
+        
+        guard name.count <= 20 else {
+            throw Error.failedToCreateNameDueToWrongFormat
+        }
+        
+        guard !players.contains(where: { $0.name == name }) else {
+            throw Error.faildeToCreateNameDueToDuplication
+        }
+        
+        print("Your player is \(name)!")
+        return name
     }
     
     // Créer le joueur
     private func createPlayer() -> Player? {
-        if let playerName = choosePlayerName() {
+        
+        do {
+            let playerName = try choosePlayerName()
             let newPlayer = Player(name: playerName)
             return newPlayer
+        } catch {
+            if let error = error as? Error {
+                print(error.description)
+            }
         }
+        
         print("I don't understand ❌")
         return nil
     }
     
     // Choisir le nom d'un guerrier
-    private func askWarriorName() -> String? {
+    private func askWarriorName() throws -> String {
         print("Choose the name of the warrior:")
         
-        if let name = readLine() {
-            if (name.hasPrefix(" ") || name.hasSuffix(" ")) && name.count > 20 {
-                print("Your name must not contain spaces and not exceed 20 characters.")
-            } else if name.count > 20 {
-                print("Your name must not exceed 20 characters.")
-            } else if name.hasPrefix(" ") || name.hasSuffix(" ") {
-                print("Your name must not contain spaces")
-            } else {
-                print("Your player is \(name)!")
-                return name
-            }
+        guard let name = readLine() else {
+            throw Error.failedToReadTerminal
         }
-        print("I don't understand ❌")
-        return nil
+        
+        guard (name.hasPrefix(" ") || name.hasSuffix(" ")) || name.count > 20 else {
+            throw Error.failedToCreateNameDueToWrongFormat
+        }
+        
+        print("Your player is \(name)!")
+        return name
     }
     
     private func getChoseWeaponInstruction() -> String {
@@ -126,25 +173,6 @@ class Game {
         return instruction
     }
     
-    
-    enum Error: Swift.Error {
-        case failedToReadTerminal
-        case failedToConvertTerminalInputToInteger
-        case failedToAccessElementDueToIndexOutOfBounds
-        
-        
-        
-        var description: String {
-            switch self {
-            case .failedToReadTerminal:
-                return "failedToReadTerminal"
-            case .failedToConvertTerminalInputToInteger:
-                return "failedToConvertTerminalInputToInteger"
-            case .failedToAccessElementDueToIndexOutOfBounds:
-                return "failedToAccessElementDueToIndexOutOfBounds"
-            }
-        }
-    }
     
     /// Choisir l'arme d'un guerrier
     private func askWarriorWeapon() throws -> Weapon {
@@ -173,20 +201,15 @@ class Game {
     
     /// Créer un guerrier
     /// - Returns: the created warrior
-    private func createWarrior() -> Warrior? {
-        if let warriorName = askWarriorName() {
-            do {
-                let weapon = try askWarriorWeapon()
-                let newWarrior = Warrior(name: warriorName, weapon: weapon)
-                return newWarrior
-            } catch {
-                guard let error = error as? Error else { return nil }
-                print(error.description)
-                return nil
-            }
+    private func createWarrior() throws -> Warrior {
+        
+        guard let warriorName = try? askWarriorName() else {
+            throw Error.failedToNameTheWarrior
         }
-        print("I don't understand ❌")
-        return nil
+        
+        let weapon = try? askWarriorWeapon()
+        let newWarrior = Warrior(name: warriorName, weapon: weapon ?? <#default value#>)
+        return newWarrior
     }
     
     // Jouer un round (tous les joueurs doivent jouer une fois)
@@ -195,7 +218,6 @@ class Game {
             numberOfRounds += 1
             print("+++++++++++++++++++++++++++++++++++ ⚔️ Round number \(numberOfRounds) starts now ⚔️ +++++++++++++++++++++++++++++++++++")
           
-            
             for (playerIndex, player) in players.enumerated() {
                 
                 guard !player.isEliminated else {
@@ -210,13 +232,9 @@ class Game {
                 guard !isFightPhaseOver else {
                     break
                 }
-                
-                
             }
             print("Round number \(numberOfRounds) is now over.")
         }
-        
-
     }
     
     private func displayWinner() {
