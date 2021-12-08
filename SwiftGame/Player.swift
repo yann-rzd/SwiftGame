@@ -20,25 +20,6 @@ class Player {
         self.name = name
     }
     
-    enum Error: Swift.Error {
-        case terminalError
-        case inputIsNotAnInteger
-        case inputIsNotOneOrTwo
-        case indexInputIsNotInBound
-        case selectedWarriorIsDead
-        
-        
-        var description: String {
-            switch self {
-            case .selectedWarriorIsDead: return "selectedWarriorIsDead"
-            case .indexInputIsNotInBound: return "indexInputIsNotInBound"
-            case .inputIsNotOneOrTwo: return "inputIsNotOneOrTwo"
-            case .terminalError: return "terminalError"
-            case .inputIsNotAnInteger: return "inputIsNotAnInteger"
-            }
-        }
-    }
-    
     // Jouer son tour
     func playTurn(players: [Player]) {
         guard !isEliminated else {
@@ -87,7 +68,7 @@ class Player {
         print("Do you want to display the teams? (print 1 for yes, 2 for no)")
         
         guard let answer = readLine() else {
-            throw Error.terminalError
+            throw Error.failedToReadTerminal
         }
         
         guard let number = Int(answer) else {
@@ -123,14 +104,12 @@ class Player {
         let selectedWarrior = try chooseElement(from: player.team)
         
         guard selectedWarrior.isAlive else {
-            throw Error.selectedWarriorIsDead
+            throw Error.selectedWarriorIsAlreadyDead
         }
         
         //print("Your must enter a number between 1 and 3 and choose a warrior still alive.")
         
-
         print("The warrior \(selectedWarrior.name) takes action!")
-        
         
         return selectedWarrior
     }
@@ -143,14 +122,12 @@ class Player {
         let selectedPlayer = try chooseElement(from: players)
         
         guard !selectedPlayer.isEliminated else {
-            throw Error.selectedWarriorIsDead
+            throw Error.selectedPlayerIsAlreadyDead
         }
         
         //print("Your must enter a number between 1 and 3 and choose a warrior still alive.")
         
-
         print("The player \(selectedPlayer.name) takes action!")
-        
         
         return selectedPlayer
     }
@@ -160,7 +137,7 @@ class Player {
     private func chooseElement<T>(from array: [T]) throws -> T {
         
         guard let indexStringInput = readLine() else {
-            throw Error.terminalError
+            throw Error.failedToReadTerminal
         }
         
         guard let indexInput = Int(indexStringInput) else {
@@ -169,18 +146,14 @@ class Player {
         
         let elementIndex = indexInput - 1
         
-        
         guard array.indices.contains(elementIndex) else {
-            throw Error.indexInputIsNotInBound
+            throw Error.failedToAccessElementDueToIndexOutOfBounds
         }
-        
         
         let selectedElement = array[elementIndex]
     
         //print("Your must enter a number between 1 and 3 and choose a warrior still alive.")
 
-        
-        
         return selectedElement
     }
 

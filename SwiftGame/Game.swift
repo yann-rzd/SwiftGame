@@ -21,34 +21,6 @@ class Game {
         players.filter { !$0.isEliminated }
     }
     
-    enum Error: Swift.Error {
-        case failedToReadTerminal
-        case failedToConvertTerminalInputToInteger
-        case failedToAccessElementDueToIndexOutOfBounds
-        case failedToCreateNameDueToWrongFormat
-        case faildeToCreateNameDueToDuplication
-        case failedToNameTheWarrior
-        
-        
-        
-        var description: String {
-            switch self {
-            case .failedToReadTerminal:
-                return "failedToReadTerminal"
-            case .failedToConvertTerminalInputToInteger:
-                return "failedToConvertTerminalInputToInteger"
-            case .failedToAccessElementDueToIndexOutOfBounds:
-                return "failedToAccessElementDueToIndexOutOfBounds"
-            case .failedToCreateNameDueToWrongFormat:
-                return "failedToAccessElementDueToIndexOutOfBounds"
-            case .faildeToCreateNameDueToDuplication:
-                return "faildeToCreateNameDueToDuplication"
-            case .failedToNameTheWarrior:
-                return "failedToNameTheWarrior"
-            }
-        }
-    }
-    
     // Démarrer la partie
     func start() {
         print("Do you want to start a new game?")

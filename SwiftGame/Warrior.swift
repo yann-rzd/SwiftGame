@@ -20,33 +20,12 @@ class Warrior {
         self.weapon = weapon
     }
     
-    enum Error: Swift.Error {
-        case terminalError
-        case inputIsNotAnInteger
-        case inputIsNotOneOrTwo
-        case indexInputIsNotInBound
-        case warriorIsAlreadyDead
-        case warriorTargetedIsAlreadyDead
-        
-        
-        var description: String {
-            switch self {
-            case .indexInputIsNotInBound: return "indexInputIsNotInBound"
-            case .inputIsNotOneOrTwo: return "inputIsNotOneOrTwo"
-            case .terminalError: return "terminalError"
-            case .inputIsNotAnInteger: return "inputIsNotAnInteger"
-            case .warriorIsAlreadyDead: return "warriorIsAlreadyDead"
-            case .warriorTargetedIsAlreadyDead: return "warriorTargetedIsAlreadyDead"
-            }
-        }
-    }
-    
     //Le guerrier joue son tour
     func performWarriorAction(targetWarrior: Warrior) throws {
         print("Do you want to attack ⚔️ or heal 🩹? (press 1 for attack, 2 for heal")
         
         guard let answer = readLine() else {
-            throw Error.terminalError
+            throw Error.failedToReadTerminal
         }
         
         guard let number = Int(answer) else {
@@ -80,11 +59,11 @@ class Warrior {
         let randomInt = Int.random(in: 1...100)
         
         guard isAlive == true else {
-            throw Error.warriorIsAlreadyDead
+            throw Error.selectedWarriorIsAlreadyDead
         }
         
         guard warrior.isAlive == true else {
-            throw Error.warriorTargetedIsAlreadyDead
+            throw Error.selectedWarriorTargetedIsAlreadyDead
         }
         
         if randomInt < 90 {
@@ -112,11 +91,11 @@ class Warrior {
     private func heal(warrior: Warrior) throws {
         
         guard isAlive == true else {
-            throw Error.warriorIsAlreadyDead
+            throw Error.selectedWarriorIsAlreadyDead
         }
         
         guard warrior.isAlive == true else {
-            throw Error.warriorTargetedIsAlreadyDead
+            throw Error.selectedWarriorTargetedIsAlreadyDead
         }
         
 
