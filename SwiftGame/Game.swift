@@ -11,7 +11,7 @@ class Game {
     private var players: [Player] = []
     private var numberOfPlayers = 0 // Faire une propriété calculée
     private let numberOfPlayersRange = 2..<5
-    private var numberOfRounds = 1 // Faire une popriété calculée
+    private var numberOfRounds = 0 // Faire une popriété calculée
     
     private var isFightPhaseOver: Bool {
         remainingPlayers.count <= 1
@@ -28,38 +28,40 @@ class Game {
         if let choice = readLine() {
             switch choice {
             case "yes":
-                print("You just started a new game!")
+                print("⚔️ You just started a new game ⚔️ \n")
                 
-                do {
-                    try askNumberOfPlayers()
-                } catch {
-                    if let error = error as? Error {
-                        print(error.description)
+                while true {
+                    do {
+                        try askNumberOfPlayers()
+                        for i in 1...numberOfPlayers {
+                            print("The player \(i) must create his team ✨\n")
+                            let newPlayer = createPlayer()
+                            for _ in 1...3 {
+                                let newWarrior = try createWarrior()
+                                newPlayer.team.append(newWarrior)
+                            }
+                            players.append(newPlayer)
+                        }
+                        startFightPhase()
+                        displayWinner()
+                    } catch {
+                        if let error = error as? Error {
+                            print(error.description)
+                        }
                     }
                 }
                 
-                for i in 1...numberOfPlayers {
-                    print("The player \(i) must create his team ✨")
-                    let newPlayer = createPlayer()
-                    for _ in 1...3 {
-                        newPlayer?.team.append(try! createWarrior())
-                    }
-                    players.append(newPlayer!)
-                }
             case "no":
                 print("Ok, see you next time!")
             default:
                 print("I don't understand ❌")
             }
         }
-        
-        startFightPhase()
-        displayWinner()
     }
         
     // Demander le nombre de joueur
     private func askNumberOfPlayers() throws {
-        print("How many players do you want to play with? You must enter a number between 2 and 5 inclusive.")
+        print("How many players do you want to play with? (You must enter a number between 2 and 5 inclusive)")
         
         guard let answer = readLine() else {
             throw Error.failedToReadTerminal
@@ -73,7 +75,7 @@ class Game {
             throw Error.failedToAccessElementDueToIndexOutOfBounds
         }
         
-        print("You want to play with \(number) players.")
+        print("You want to play with \(number) players.\n")
         numberOfPlayers = number
     }
     
@@ -97,40 +99,46 @@ class Game {
             throw Error.faildeToCreateNameDueToDuplication
         }
         
-        print("Your player is \(name)!")
+        print("Your player is \(name)!\n")
         return name
     }
     
     // Créer le joueur
-    private func createPlayer() -> Player? {
-        
-        do {
-            let playerName = try choosePlayerName()
-            let newPlayer = Player(name: playerName)
-            return newPlayer
-        } catch {
-            if let error = error as? Error {
-                print(error.description)
+    private func createPlayer() -> Player {
+        while true {
+            do {
+                let playerName = try choosePlayerName()
+                let newPlayer = Player(name: playerName)
+                return newPlayer
+            } catch {
+                if let error = error as? Error {
+                    print(error.description)
+                }
             }
         }
-        
-        print("I don't understand ❌")
-        return nil
     }
     
     // Choisir le nom d'un guerrier
     private func askWarriorName() throws -> String {
-        print("Choose the name of the warrior:")
+        print("Choose the name of your warrior:")
         
         guard let name = readLine() else {
             throw Error.failedToReadTerminal
         }
         
-        guard (name.hasPrefix(" ") || name.hasSuffix(" ")) || name.count > 20 else {
+        guard !name.contains(" ") else {
             throw Error.failedToCreateNameDueToWrongFormat
         }
         
-        print("Your player is \(name)!")
+        guard name.count <= 20 else {
+            throw Error.failedToCreateNameDueToWrongFormat
+        }
+        
+//        guard !players.contains(where: { $0.name == name }) else {
+//            throw Error.faildeToCreateNameDueToDuplication
+//        }
+        
+        print("Your player is \(name)!\n")
         return name
     }
     
@@ -147,7 +155,7 @@ class Game {
     
     
     /// Choisir l'arme d'un guerrier
-    private func askWarriorWeapon() throws -> Weapon {
+    private func askWarriorWeapon() throws -> Weapon { // Comment récupérer le nom du guerrier ?
         
         print(getChoseWeaponInstruction())
         
@@ -167,37 +175,42 @@ class Game {
         
         let selectedWeapon = Weapon.allCases[adaptedWeaponIndexSelection]
         
-        print("Your warrior draws \(selectedWeapon.description) !")
+        print("Your warrior draws \(selectedWeapon.description) !\n")
         return selectedWeapon
     }
     
     /// Créer un guerrier
     /// - Returns: the created warrior
     private func createWarrior() throws -> Warrior {
-        
-        guard let warriorName = try? askWarriorName() else {
-            throw Error.failedToNameTheWarrior
+        while true {
+            do {
+                let warriorName = try askWarriorName()
+                let weapon = try askWarriorWeapon()
+                
+                let newWarrior = Warrior(name: warriorName, weapon: weapon)
+                return newWarrior
+            } catch {
+                if let error = error as? Error {
+                    print(error.description)
+                }
+            }
         }
-        
-        let weapon = try? askWarriorWeapon()
-        let newWarrior = Warrior(name: warriorName, weapon: weapon ?? <#default value#>)
-        return newWarrior
     }
     
     // Jouer un round (tous les joueurs doivent jouer une fois)
     private func startFightPhase() {
         while !isFightPhaseOver {
             numberOfRounds += 1
-            print("+++++++++++++++++++++++++++++++++++ ⚔️ Round number \(numberOfRounds) starts now ⚔️ +++++++++++++++++++++++++++++++++++")
+            print("+++++++++++++++++++++++++++++++++++ ⚔️ Round number \(numberOfRounds) starts now ⚔️ +++++++++++++++++++++++++++++++++++\n")
           
             for (playerIndex, player) in players.enumerated() {
                 
                 guard !player.isEliminated else {
-                    print("The player \(players[playerIndex + 1]) \(player.name) is eliminated. So he skips his turn ❌")
+                    print("The player \(players[playerIndex + 1]) \(player.name) is eliminated. So he skips his turn ❌\n")
                     continue
                 }
                 
-                print("--------------- Now it's player #\(playerIndex + 1)'s turn. Let's go \(player.name) ❗️ ---------------")
+                print("--------------- Now it's player #\(playerIndex + 1)'s turn. Let's go \(player.name) ❗️ ---------------\n")
                 player.playTurn(players: players)
                 
              
@@ -205,7 +218,7 @@ class Game {
                     break
                 }
             }
-            print("Round number \(numberOfRounds) is now over.")
+            print("Round number \(numberOfRounds) is now over.\n")
         }
     }
     
@@ -213,11 +226,11 @@ class Game {
         guard
             remainingPlayers.count == 1,
             let winningPlayer = remainingPlayers.first else {
-            print("There is no winner")
+            print("There is no winner\n")
             return
         }
         
-        print("The player \(winningPlayer.name) won the game ! 🎉🎉🎉🎉🎉🎉 Congratulations 🎉🎉🎉🎉🎉🎉") // Comment récuprer le nom du gagnant ?
+        print("The player \(winningPlayer.name) won the game ! 🎉🎉🎉🎉🎉🎉 Congratulations 🎉🎉🎉🎉🎉🎉\n") // Comment récuprer le nom du gagnant ?
         print("**********************************************  End of the game **********************************************")
     }
 }

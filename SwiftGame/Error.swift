@@ -15,6 +15,7 @@ enum Error: Swift.Error {
     case failedToCreateNameDueToWrongFormat
     case faildeToCreateNameDueToDuplication
     case failedToNameTheWarrior
+    case failedToAssignWeapon
     case inputIsNotAnInteger
     case inputIsNotOneOrTwo
     case selectedWarriorIsAlreadyDead
@@ -35,6 +36,8 @@ enum Error: Swift.Error {
             return "The name could not be created because it already exists ❌"
         case .failedToNameTheWarrior:
             return "The name of the warrior could not be created ❌"
+        case .failedToAssignWeapon:
+            return "The weapon could not be assigned to the warrior ❌"
         case .inputIsNotAnInteger:
             return "Your request is not an integer ❌"
         case .inputIsNotOneOrTwo:

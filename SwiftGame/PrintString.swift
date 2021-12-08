@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+
+enum PrintString {
+    case startGame
+    
+    var description: () {
+        switch self {
+        case .startGame:
+            return print("Do you want to start a new game?")
+        }
+    }
+}

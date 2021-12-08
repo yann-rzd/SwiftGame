@@ -81,11 +81,11 @@ class Player {
               
         if number == 1 {
             for (index, player) in players.enumerated() {
-                print("This is the team of player \(index + 1), \(player.name):")
+                print("This is the team of player \(index + 1), \(player.name):\n")
                 player.displayOwnTeam()
             }
         } else if number == 2 {
-            print("So let's get down to business!")
+            print("So let's get down to business!\n")
         }
     }
     
@@ -117,7 +117,7 @@ class Player {
     
     // Choisir le guerrier qui faire l'action
     private func choosePlayer(from players: [Player]) throws -> Player {
-        print("Which player do you want to choose ? (Enter the number of the player)")
+        print("Which player do you want to target ? (Enter the number of the player)")
         
         let selectedPlayer = try chooseElement(from: players)
         
@@ -125,9 +125,7 @@ class Player {
             throw Error.selectedPlayerIsAlreadyDead
         }
         
-        //print("Your must enter a number between 1 and 3 and choose a warrior still alive.")
-        
-        print("The player \(selectedPlayer.name) takes action!")
+        print("You chose to target \(selectedPlayer.name)!")
         
         return selectedPlayer
     }
@@ -151,8 +149,6 @@ class Player {
         }
         
         let selectedElement = array[elementIndex]
-    
-        //print("Your must enter a number between 1 and 3 and choose a warrior still alive.")
 
         return selectedElement
     }

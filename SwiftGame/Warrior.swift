@@ -50,7 +50,7 @@ class Warrior {
     // Afficher les informations du guerrier
     func displayInformation() {
         print("\(name)'s life = \(currentLife)")
-        print("\(name)'s weapon = \(weapon.description)")
+        print("\(name)'s weapon = \(weapon.description)\n")
 
     }
     
