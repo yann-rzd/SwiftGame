@@ -20,6 +20,13 @@ class Player {
         self.name = name
     }
     
+    
+    func getHasWarriorInTeamWithSameName(name: String) -> Bool {
+        team.contains {
+            $0.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+    }
+    
     // Jouer son tour
     func playTurn(players: [Player]) {
         guard !isEliminated else {

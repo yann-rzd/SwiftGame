@@ -36,11 +36,11 @@ class Game {
                         for i in 1...numberOfPlayers {
                             print("The player \(i) must create his team ✨\n")
                             let newPlayer = createPlayer()
+                            players.append(newPlayer)
                             for _ in 1...3 {
                                 let newWarrior = try createWarrior()
                                 newPlayer.team.append(newWarrior)
                             }
-                            players.append(newPlayer)
                         }
                         startFightPhase()
                         displayWinner()
@@ -134,9 +134,9 @@ class Game {
             throw Error.failedToCreateNameDueToWrongFormat
         }
         
-//        guard !players.contains(where: { $0.name == name }) else {
-//            throw Error.faildeToCreateNameDueToDuplication
-//        }
+        guard !players.contains(where: { $0.getHasWarriorInTeamWithSameName(name: name) }) else {
+            throw Error.faildeToCreateNameDueToDuplication
+        }
         
         print("Your player is \(name)!\n")
         return name
@@ -181,7 +181,7 @@ class Game {
     
     /// Créer un guerrier
     /// - Returns: the created warrior
-    private func createWarrior() throws -> Warrior {
+    private func createWarrior() -> Warrior {
         while true {
             do {
                 let warriorName = try askWarriorName()
