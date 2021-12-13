@@ -7,6 +7,7 @@
 
 import Foundation
 
+
 class Game {
     private var players: [Player] = []
     private var numberOfPlayers = 0 // Faire une propriété calculée
@@ -21,7 +22,7 @@ class Game {
         players.filter { !$0.isEliminated }
     }
     
-    // Démarrer la partie
+    /// This function starts the game
     func start() {
         print("Do you want to start a new game?")
         
@@ -38,7 +39,7 @@ class Game {
                             let newPlayer = createPlayer()
                             players.append(newPlayer)
                             for _ in 1...3 {
-                                let newWarrior = try createWarrior()
+                                let newWarrior = createWarrior()
                                 newPlayer.team.append(newWarrior)
                             }
                         }
@@ -59,7 +60,14 @@ class Game {
         }
     }
         
-    // Demander le nombre de joueur
+    
+    /// This function asks for the number of players participating in the game.
+    
+    /// - throws:
+    /// 1. The terminal failed to read the user's input
+    /// 2. The input could not be converted to integer
+    /// 3. The input does not match an existing index
+
     private func askNumberOfPlayers() throws {
         print("How many players do you want to play with? (You must enter a number between 2 and 5 inclusive)")
         
@@ -79,8 +87,15 @@ class Game {
         numberOfPlayers = number
     }
     
-    // Choisir le nom du joueur
-    private func choosePlayerName() throws -> String {
+    /// This function asks the player to choose a name.
+    
+    /// - returns: The name of the player
+    /// - throws:
+    /// 1. The terminal failed to read the user's input
+    /// 2. The name format is not respected
+    /// 3. The player's name is already used
+    
+    private func askPlayerName() throws -> String {
         print("Choose the name of your player:")
         
         guard let name = readLine() else {
@@ -95,7 +110,7 @@ class Game {
             throw Error.failedToCreateNameDueToWrongFormat
         }
         
-        guard !players.contains(where: { $0.name == name }) else {
+        guard !players.contains(where: { $0.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) }) else {
             throw Error.faildeToCreateNameDueToDuplication
         }
         
@@ -107,7 +122,7 @@ class Game {
     private func createPlayer() -> Player {
         while true {
             do {
-                let playerName = try choosePlayerName()
+                let playerName = try askPlayerName()
                 let newPlayer = Player(name: playerName)
                 return newPlayer
             } catch {
@@ -116,6 +131,28 @@ class Game {
                 }
             }
         }
+    }
+    
+    private func getChoseWarriorTypeInstruction() -> String {
+        
+        var instruction = "Choose the type of your warrior:"
+       
+        for (index, warrior) in EnumWarriors.allCases.enumerated() {
+            instruction.append("\n\(index + 1). \(warrior.formattedDescription)")
+        }
+        
+        return instruction
+    }
+    
+    
+    /// This function asks to choose the type of the warrior
+    
+    /// - parameter <#parameterName#>: <#Description#>.
+    /// - throws: <#Errors throwed#>
+    /// - returns: <#Return values#>
+    
+    private func askWarriorType() {
+        
     }
     
     // Choisir le nom d'un guerrier

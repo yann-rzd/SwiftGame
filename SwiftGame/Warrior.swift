@@ -9,11 +9,11 @@ import Foundation
 
 class Warrior {
     let name: String
-    let lifeRange = 0...5
+    var lifeRange = 0...5
     var currentLife = 5 // Faire une propriété calculée
     var isAlive = true // Faire une propriété calculée
     var weapon: Weapon
-    let healAmountOfLife = 15
+    var healAmountOfLife = 15
     
     init(name: String, weapon: Weapon) {
         self.name = name
@@ -55,7 +55,7 @@ class Warrior {
     }
     
     // Attaquer
-    private func attack(warrior: Warrior) throws {
+    func attack(warrior: Warrior) throws {
         let randomInt = Int.random(in: 1...100)
         
         guard isAlive == true else {
@@ -88,7 +88,7 @@ class Warrior {
     }
     
     // Soigner
-    private func heal(warrior: Warrior) throws {
+    func heal(warrior: Warrior) throws {
         
         guard isAlive == true else {
             throw Error.selectedWarriorIsAlreadyDead

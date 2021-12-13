@@ -42,7 +42,7 @@ class Player {
             }
         }
         
-        let targetPlayer = loopChoosePlayer(from: players)
+        let targetPlayer = loopChoosePlayer(from: players)    
         let warriorMakingAction = loopChooseWarrior(from: self)
         let targetWarrior = loopChooseWarrior(from: targetPlayer)
         
