@@ -25,7 +25,7 @@ class GiantWarrior: Warrior {
     func describeWarrior() {
         print("This warrior is a \(warriorType)\n"
               + "\n\(description)"
-              + "/nTheir capacity: \(capacity)")
+              + "\nTheir capacity: \(capacity)")
     }
     
     override func attack(warrior: Warrior) throws {

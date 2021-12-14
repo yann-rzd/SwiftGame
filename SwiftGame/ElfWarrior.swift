@@ -16,7 +16,13 @@ class ElfWarrior: Warrior {
     func describeWarrior() {
         print("This warrior is an \(warriorType)\n"
               + "\n\(description)"
-              + "/nTheir capacity: \(capacity)")
+              + "\nTheir capacity: \(capacity)")
+    }
+    
+    override func displayInformation() {
+        print("Type of warrior: \(warriorType)")
+        print("\(name)'s life = \(currentLife)")
+        print("\(name)'s weapon = \(weapon.description)\n")
     }
     
     override var lifeRange : ClosedRange<Int> {

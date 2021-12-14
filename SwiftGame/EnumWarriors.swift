@@ -8,49 +8,49 @@
 import Foundation
 
 enum EnumWarriors: CaseIterable {
-    case human
-    case dwarf
-    case elf
-    case giant
-    case wizard
-    case goblin
+    case HumanWarrior
+    case DwarfWarrior
+    case ElfWarrior
+    case GiantWarrior
+    case WizardWarrior
+    case GoblinWarrior
     
-    var warriorType: String {
+    var name: String {
         switch self {
-        case .human: return "Human 👨🏻"
-        case .dwarf: return "Dwarf 👨‍🔧"
-        case .elf: return "Elf 🧝‍♀️"
-        case .giant: return "Giant 🗿"
-        case .wizard: return "Wizard 🧙‍♂️"
-        case .goblin: return "Goblin 🧟‍♂️"
+        case .HumanWarrior: return "Human 👨🏻"
+        case .DwarfWarrior: return "Dwarf 👨‍🔧"
+        case .ElfWarrior: return "Elf 🧝‍♀️"
+        case .GiantWarrior: return "Giant 🗿"
+        case .WizardWarrior: return "Wizard 🧙‍♂️"
+        case .GoblinWarrior: return "Goblin 🧟‍♂️"
         }
     }
     
     var description: String {
         switch self {
-        case .human: return "Humans are great colonizers 🏃‍♂️"
-        case .dwarf: return "Dwarves are strong builders 🏛"
-        case .elf: return "Elves are nature spirits 🌳"
-        case .giant: return "Giants are forces of nature 🏔"
-        case .wizard: return "Wizards are known for their knowledge and wisdom 📚"
-        case .goblin: return "Goblins are very cunning and talk a lot 👾"
+        case .HumanWarrior: return "Humans are great colonizers 🏃‍♂️"
+        case .DwarfWarrior: return "Dwarves are strong builders 🏛"
+        case .ElfWarrior: return "Elves are nature spirits 🌳"
+        case .GiantWarrior: return "Giants are forces of nature 🏔"
+        case .WizardWarrior: return "Wizards are known for their knowledge and wisdom 📚"
+        case .GoblinWarrior: return "Goblins are very cunning and talk a lot 👾"
         }
     }
     
     var capacity: String {
         switch self {
-        case .human: return "No particular capacity ⭕️"
-        case .dwarf: return "Less life 🔴 but more attack 📈"
-        case .elf: return "More life 🟢"
-        case .giant: return "Cannot heal ❌ but have a formidable strength 🦾"
-        case .wizard: return "Give more healing ❇️"
-        case .goblin: return "More life 🟢"
+        case .HumanWarrior: return "No particular capacity ⭕️"
+        case .DwarfWarrior: return "Less life 🔴 but more attack 📈"
+        case .ElfWarrior: return "More life 🟢"
+        case .GiantWarrior: return "Cannot heal ❌ but have a formidable strength 🦾"
+        case .WizardWarrior: return "Give more healing ❇️"
+        case .GoblinWarrior: return "More life 🟢"
         }
     }
     
     var formattedDescription: String {
-        "This warrior is a \(warriorType)\n"
-              + "\n\(description)"
-              + "\nTheir capacity: \(capacity)"
+        "The warrior \(name)"
+              + "\n- \(description)"
+              + "\n- Their capacity: \(capacity)\n"
     }
 }
