@@ -27,7 +27,9 @@ class Player {
         }
     }
     
-    // Jouer son tour
+    
+    /// This feature allows the player to play when it is his turn
+    /// - parameter players: The array with all the players.
     func playTurn(players: [Player]) {
         guard !isEliminated else {
             print("You have no warriors alive 😢. So you skip your turn ❌.")
@@ -49,14 +51,29 @@ class Player {
         try? warriorMakingAction.performWarriorAction(targetWarrior: targetWarrior)
     }
     
+    
+    /// <#Summay text for documentation#>
+    /// - parameter <#parameterName#>: <#Description#>.
+    /// - throws: <#Errors throwed#>
+    /// - returns: <#Return values#>
     private func loopChooseWarrior(from player: Player) -> Warrior {
         loopAction(action: chooseWarrior(from:), parameter: player)
     }
     
+    
+    /// <#Summay text for documentation#>
+    /// - parameter <#parameterName#>: <#Description#>.
+    /// - throws: <#Errors throwed#>
+    /// - returns: <#Return values#>
     private func loopChoosePlayer(from players: [Player]) -> Player {
         loopAction(action: choosePlayer(from:), parameter: players)
     }
     
+    
+    /// <#Summay text for documentation#>
+    /// - parameter <#parameterName#>: <#Description#>.
+    /// - throws: <#Errors throwed#>
+    /// - returns: <#Return values#>
     private func loopAction<T, U>(action: (U) throws -> T, parameter: U) -> T {
         while true {
             do {
@@ -70,7 +87,9 @@ class Player {
         }
     }
     
-    // Afficher l'état de son équipe
+    
+    /// This function displays the team status of all players
+    /// - parameter players: the array with all the players.
     func displayTeams(players: [Player]) throws {
         print("Do you want to display the teams? (print 1 for yes, 2 for no)")
         
@@ -96,6 +115,8 @@ class Player {
         }
     }
     
+    
+    /// This function displays the team status
     func displayOwnTeam() {
         for (index, warrior) in team.enumerated() {
             print("\(index + 1). Warrior named \(warrior.name) --------------------------------")
@@ -104,7 +125,11 @@ class Player {
     }
     
     
-    // Choisir le guerrier qui faire l'action
+    
+    /// This function allows you to choose the warrior who will perform the action
+    /// - parameter player: the player targeted
+    /// - throws: selected warrior is already dead
+    /// - returns: the warrior chosen
     private func chooseWarrior(from player: Player) throws -> Warrior {
         print("Which warrior do you want to choose from \(player.name)? (Enter the number of the warrior)")
         
@@ -114,15 +139,16 @@ class Player {
             throw Error.selectedWarriorIsAlreadyDead
         }
         
-        //print("Your must enter a number between 1 and 3 and choose a warrior still alive.")
-        
         print("The warrior \(selectedWarrior.name) takes action!")
         
         return selectedWarrior
     }
     
     
-    // Choisir le guerrier qui faire l'action
+    /// This function allows you to choose the player who will be affected by the action
+    /// - parameter players: the array with all the players
+    /// - throws: selected player is already dead
+    /// - returns: the player selected
     private func choosePlayer(from players: [Player]) throws -> Player {
         print("Which player do you want to target ? (Enter the number of the player)")
         
@@ -138,7 +164,10 @@ class Player {
     }
     
     
-    
+    /// <#Summay text for documentation#>
+    /// - parameter <#parameterName#>: <#Description#>.
+    /// - throws: <#Errors throwed#>
+    /// - returns: <#Return values#>
     private func chooseElement<T>(from array: [T]) throws -> T {
         
         guard let indexStringInput = readLine() else {

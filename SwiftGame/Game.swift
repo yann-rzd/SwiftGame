@@ -24,11 +24,11 @@ class Game {
     
     /// This function starts the game
     func start() {
-        print("Do you want to start a new game?")
+        print("Do you want to start a new game? (1 for yes, 2 for no)")
         
         if let choice = readLine() {
             switch choice {
-            case "yes":
+            case "1":
                 print("⚔️ You just started a new game ⚔️ \n")
                 
                 while true {
@@ -52,7 +52,7 @@ class Game {
                     }
                 }
                 
-            case "no":
+            case "2":
                 print("Ok, see you next time!")
             default:
                 print("I don't understand ❌")
@@ -62,12 +62,6 @@ class Game {
         
     
     /// This function asks for the number of players participating in the game.
-    
-    /// - throws:
-    /// 1. The terminal failed to read the user's input
-    /// 2. The input could not be converted to integer
-    /// 3. The input does not match an existing index
-
     private func askNumberOfPlayers() throws {
         print("How many players do you want to play with? (You must enter a number between 2 and 5 inclusive)")
         
@@ -87,14 +81,8 @@ class Game {
         numberOfPlayers = number
     }
     
-    /// This function asks the player to choose a name.
-    
+    /// This function asks the player to choose a name
     /// - returns: The name of the player
-    /// - throws:
-    /// 1. The terminal failed to read the user's input
-    /// 2. The name format is not respected
-    /// 3. The player's name is already used
-    
     private func askPlayerName() throws -> String {
         print("Choose the name of your player:")
         
@@ -119,7 +107,9 @@ class Game {
         return name
     }
     
-    // Créer le joueur
+    
+    /// This function creates the player
+    /// - returns: The new player
     private func createPlayer() -> Player {
         while true {
             do {
@@ -134,6 +124,9 @@ class Game {
         }
     }
     
+    
+    /// This function lists all the warrior types
+    /// - returns: List of all types of warriors
     private func getChoseWarriorTypeInstruction() -> String {
         
         var instruction = "Choose the type of your warrior:"
@@ -146,12 +139,8 @@ class Game {
     }
     
     
-    /// This function asks to choose the type of the warrior
-    
-    /// - parameter <#parameterName#>: <#Description#>.
-    /// - throws: <#Errors throwed#>
-    /// - returns: <#Return values#>
-    
+    /// This function displays the list of all types of warrior and asks to choose the type of the warrior
+    /// - returns: The type of warrior chosen
     private func askWarriorType() throws -> EnumWarriors {
         print(getChoseWarriorTypeInstruction())
         
@@ -176,7 +165,9 @@ class Game {
         return selectedWarriorType
     }
     
-    // Choisir le nom d'un guerrier
+    
+    /// This function asks to choose the name of the warrior
+    /// - returns: The name of the warrior
     private func askWarriorName() throws -> String {
         print("Choose the name of your warrior:")
         
@@ -200,6 +191,9 @@ class Game {
         return name
     }
     
+    
+    /// This function lists all the weapons
+    /// - returns: List of all the weapons
     private func getChoseWeaponInstruction() -> String {
         
         var instruction = "Choose the weapon of your warrior:"
@@ -212,7 +206,8 @@ class Game {
     }
     
     
-    /// Choisir l'arme d'un guerrier
+    /// This function displays the list of all the weapons and asks to choose a weapon
+    /// - returns: The weapon chosen
     private func askWarriorWeapon() throws -> Weapon {
         
         print(getChoseWeaponInstruction())
@@ -237,8 +232,8 @@ class Game {
         return selectedWeapon
     }
     
-    /// Créer un guerrier
-    /// - Returns: the created warrior
+    /// This function creates the warrior with its type, name and weapon previously defined
+    /// - Returns: The created warrior
     private func createWarrior() -> Warrior {
         while true {
             do {
@@ -274,7 +269,8 @@ class Game {
         }
     }
     
-    // Jouer un round (tous les joueurs doivent jouer une fois)
+    
+    /// This function starts the fight process between the players
     private func startFightPhase() {
         while !isFightPhaseOver {
             numberOfRounds += 1
@@ -299,6 +295,7 @@ class Game {
         }
     }
     
+    /// This function displays the winner at the end of the game
     private func displayWinner() {
         guard
             remainingPlayers.count == 1,
@@ -307,7 +304,10 @@ class Game {
             return
         }
         
-        print("The player \(winningPlayer.name) won the game ! 🎉🎉🎉🎉🎉🎉 Congratulations 🎉🎉🎉🎉🎉🎉\n") // Comment récuprer le nom du gagnant ?
-        print("**********************************************  End of the game **********************************************")
+        print("The player \(winningPlayer.name) won the game ! 🎉🎉🎉🎉🎉🎉 Congratulations 🎉🎉🎉🎉🎉🎉\n")
+        print("Number of rounds: \(numberOfRounds) 🥊\n")
+        print("Status of the team:"
+              + "\n\(winningPlayer.displayOwnTeam())")
+        print("\n**********************************************  End of the game **********************************************")
     }
 }
