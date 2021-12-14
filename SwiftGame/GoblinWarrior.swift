@@ -13,12 +13,6 @@ class GoblinWarrior: Warrior {
     let description = "Goblins are very cunning and talk a lot 👾"
     let capacity = "More life 🟢"
     
-    func describeWarrior() {
-        print("This warrior is a \(warriorType)\n"
-              + "\n\(description)"
-              + "\nTheir capacity: \(capacity)")
-    }
-    
     override var lifeRange : ClosedRange<Int> {
         get {
             return 1...10
@@ -35,5 +29,17 @@ class GoblinWarrior: Warrior {
         set {
             // nothing
         }
+    }
+    
+    func describeWarrior() {
+        print("This warrior is a \(warriorType)\n"
+              + "\n\(description)"
+              + "\nTheir capacity: \(capacity)")
+    }
+    
+    override func displayInformation() {
+        print("Type of warrior: \(warriorType)")
+        print("\(name)'s life = \(currentLife)")
+        print("\(name)'s weapon = \(weapon.description)\n")
     }
 }

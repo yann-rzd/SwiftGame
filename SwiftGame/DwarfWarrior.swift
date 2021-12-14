@@ -37,6 +37,12 @@ class DwarfWarrior: Warrior {
               + "\nTheir capacity: \(capacity)")
     }
     
+    override func displayInformation() {
+        print("Type of warrior: \(warriorType)")
+        print("\(name)'s life = \(currentLife)")
+        print("\(name)'s weapon = \(weapon.description)\n")
+    }
+    
     override func attack(warrior: Warrior) throws {
         let randomInt = Int.random(in: 1...100)
         

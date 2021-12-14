@@ -18,4 +18,10 @@ class HumanWarrior: Warrior {
               + "\n\(description)"
               + "\nTheir capacity: \(capacity)")
     }
+    
+    override func displayInformation() {
+        print("Type of warrior: \(warriorType)")
+        print("\(name)'s life = \(currentLife)")
+        print("\(name)'s weapon = \(weapon.description)\n")
+    }
 }
