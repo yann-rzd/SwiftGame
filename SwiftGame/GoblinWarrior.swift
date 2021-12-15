@@ -9,9 +9,9 @@ import Foundation
 
 class GoblinWarrior: Warrior {
     
-    let warriorType = "Goblin 🧟‍♂️"
-    let description = "Goblins are very cunning and talk a lot 👾"
-    let capacity = "More life 🟢"
+    private let warriorType = "Goblin 🧟‍♂️"
+    private let description = "Goblins are very cunning and talk a lot 👾"
+    private let capacity = "More life 🟢"
     
     override var lifeRange : ClosedRange<Int> {
         get {

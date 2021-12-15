@@ -9,9 +9,9 @@ import Foundation
 
 class WizardWarrior: Warrior {
     
-    let warriorType = "Wizard 🧙‍♂️"
-    let description = "Wizards are known for their knowledge and wisdom 📚"
-    let capacity = "Give more healing ❇️"
+    private let warriorType = "Wizard 🧙‍♂️"
+    private let description = "Wizards are known for their knowledge and wisdom 📚"
+    private let capacity = "Give more healing ❇️"
     
     override var healAmountOfLife: Int {
         get {

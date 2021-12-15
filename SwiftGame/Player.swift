@@ -21,6 +21,9 @@ class Player {
     }
     
     
+    /// This function checks if the name of a warrior is already in use
+    /// - parameter name: The name we want to give to our warrior
+    /// - returns: true or false
     func getHasWarriorInTeamWithSameName(name: String) -> Bool {
         team.contains {
             $0.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)

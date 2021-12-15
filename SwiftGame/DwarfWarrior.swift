@@ -9,9 +9,9 @@ import Foundation
 
 class DwarfWarrior: Warrior {
     
-    let warriorType = "Dwarf 👨‍🔧"
-    let description = "Dwarves are strong builders 🏛"
-    let capacity = "Less life 🔴 but more attack 📈"
+    private let warriorType = "Dwarf 👨‍🔧"
+    private let description = "Dwarves are strong builders 🏛"
+    private let capacity = "Less life 🔴 but more attack 📈"
     
     override var lifeRange : ClosedRange<Int> {
         get {

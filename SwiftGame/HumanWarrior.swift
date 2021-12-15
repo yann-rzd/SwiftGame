@@ -9,9 +9,9 @@ import Foundation
 
 class HumanWarrior: Warrior {
     
-    let warriorType = "Human 👨🏻"
-    let description = "Humans are great colonizers 🏃‍♂️"
-    let capacity = "No particular capacity ⭕️"
+    private let warriorType = "Human 👨🏻"
+    private let description = "Humans are great colonizers 🏃‍♂️"
+    private let capacity = "No particular capacity ⭕️"
     
     /// This function describes the warrior
     func describeWarrior() {

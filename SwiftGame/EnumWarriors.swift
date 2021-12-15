@@ -9,43 +9,43 @@ import Foundation
 
 /// Here is the list of all warrior types in the game
 enum EnumWarriors: CaseIterable {
-    case HumanWarrior
-    case DwarfWarrior
-    case ElfWarrior
-    case GiantWarrior
-    case WizardWarrior
-    case GoblinWarrior
+    case humanWarrior
+    case dwarfWarrior
+    case elfWarrior
+    case giantWarrior
+    case wizardWarrior
+    case goblinWarrior
     
     var name: String {
         switch self {
-        case .HumanWarrior: return "Human 👨🏻"
-        case .DwarfWarrior: return "Dwarf 👨‍🔧"
-        case .ElfWarrior: return "Elf 🧝‍♀️"
-        case .GiantWarrior: return "Giant 🗿"
-        case .WizardWarrior: return "Wizard 🧙‍♂️"
-        case .GoblinWarrior: return "Goblin 🧟‍♂️"
+        case .humanWarrior: return "Human 👨🏻"
+        case .dwarfWarrior: return "Dwarf 👨‍🔧"
+        case .elfWarrior: return "Elf 🧝‍♀️"
+        case .giantWarrior: return "Giant 🗿"
+        case .wizardWarrior: return "Wizard 🧙‍♂️"
+        case .goblinWarrior: return "Goblin 🧟‍♂️"
         }
     }
     
     var description: String {
         switch self {
-        case .HumanWarrior: return "Humans are great colonizers 🏃‍♂️"
-        case .DwarfWarrior: return "Dwarves are strong builders 🏛"
-        case .ElfWarrior: return "Elves are nature spirits 🌳"
-        case .GiantWarrior: return "Giants are forces of nature 🏔"
-        case .WizardWarrior: return "Wizards are known for their knowledge and wisdom 📚"
-        case .GoblinWarrior: return "Goblins are very cunning and talk a lot 👾"
+        case .humanWarrior: return "Humans are great colonizers 🏃‍♂️"
+        case .dwarfWarrior: return "Dwarves are strong builders 🏛"
+        case .elfWarrior: return "Elves are nature spirits 🌳"
+        case .giantWarrior: return "Giants are forces of nature 🏔"
+        case .wizardWarrior: return "Wizards are known for their knowledge and wisdom 📚"
+        case .goblinWarrior: return "Goblins are very cunning and talk a lot 👾"
         }
     }
     
     var capacity: String {
         switch self {
-        case .HumanWarrior: return "No particular capacity ⭕️"
-        case .DwarfWarrior: return "Less life 🔴 but more attack 📈"
-        case .ElfWarrior: return "More life 🟢"
-        case .GiantWarrior: return "Cannot heal ❌ but have a formidable strength 🦾"
-        case .WizardWarrior: return "Give more healing ❇️"
-        case .GoblinWarrior: return "More life 🟢"
+        case .humanWarrior: return "No particular capacity ⭕️"
+        case .dwarfWarrior: return "Less life 🔴 but more attack 📈"
+        case .elfWarrior: return "More life 🟢"
+        case .giantWarrior: return "Cannot heal ❌ but have a formidable strength 🦾"
+        case .wizardWarrior: return "Give more healing ❇️"
+        case .goblinWarrior: return "More life 🟢"
         }
     }
     

@@ -9,9 +9,9 @@ import Foundation
 
 class ElfWarrior: Warrior {
     
-    let warriorType = "Elf 🧝‍♀️"
-    let description = "Elves are nature spirits 🌳"
-    let capacity = "More life 🟢"
+    private let warriorType = "Elf 🧝‍♀️"
+    private let description = "Elves are nature spirits 🌳"
+    private let capacity = "More life 🟢"
     
     override var lifeRange : ClosedRange<Int> {
         get {

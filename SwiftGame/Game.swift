@@ -81,6 +81,7 @@ class Game {
         numberOfPlayers = number
     }
     
+    
     /// This function asks the player to choose a name
     /// - returns: The name of the player
     private func askPlayerName() throws -> String {
@@ -241,22 +242,22 @@ class Game {
                 let warriorName = try askWarriorName()
                 let weapon = try askWarriorWeapon()
                 
-                if warriorType == EnumWarriors.HumanWarrior {
+                if warriorType == EnumWarriors.humanWarrior {
                     let newWarrior = HumanWarrior(name: warriorName, weapon: weapon)
                     return newWarrior
-                } else if warriorType == EnumWarriors.DwarfWarrior{
+                } else if warriorType == EnumWarriors.dwarfWarrior{
                     let newWarrior = DwarfWarrior(name: warriorName, weapon: weapon)
                     return newWarrior
-                } else if warriorType == EnumWarriors.ElfWarrior{
+                } else if warriorType == EnumWarriors.elfWarrior{
                     let newWarrior = ElfWarrior(name: warriorName, weapon: weapon)
                     return newWarrior
-                } else if warriorType == EnumWarriors.GiantWarrior{
+                } else if warriorType == EnumWarriors.giantWarrior{
                     let newWarrior = GiantWarrior(name: warriorName, weapon: weapon)
                     return newWarrior
-                } else if warriorType == EnumWarriors.WizardWarrior{
+                } else if warriorType == EnumWarriors.wizardWarrior{
                     let newWarrior = WizardWarrior(name: warriorName, weapon: weapon)
                     return newWarrior
-                } else if warriorType == EnumWarriors.GoblinWarrior{
+                } else if warriorType == EnumWarriors.goblinWarrior{
                     let newWarrior = GoblinWarrior(name: warriorName, weapon: weapon)
                     return newWarrior
                 }

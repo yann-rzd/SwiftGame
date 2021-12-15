@@ -9,9 +9,9 @@ import Foundation
 
 class GiantWarrior: Warrior {
     
-    let warriorType = "Giant 🗿"
-    let description = "Giants are forces of nature 🏔"
-    let capacity = "Cannot heal ❌ but have a formidable strength 🦾"
+    private let warriorType = "Giant 🗿"
+    private let description = "Giants are forces of nature 🏔"
+    private let capacity = "Cannot heal ❌ but have a formidable strength 🦾"
     
     override var healAmountOfLife: Int {
         get {
