@@ -22,12 +22,14 @@ class WizardWarrior: Warrior {
         }
     }
     
+    /// This function describes the warrior
     func describeWarrior() {
         print("This warrior is a \(warriorType)\n"
               + "\n\(description)"
               + "\nTheir capacity: \(capacity)")
     }
     
+    /// This function displays the information of the warrior
     override func displayInformation() {
         print("Type of warrior: \(warriorType)")
         print("\(name)'s life = \(currentLife)")

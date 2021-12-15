@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Here is the list of all warrior types in the game
 enum EnumWarriors: CaseIterable {
     case HumanWarrior
     case DwarfWarrior

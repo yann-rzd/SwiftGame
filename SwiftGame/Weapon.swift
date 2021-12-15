@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Here is the list of all weapons in the game
 enum Weapon: CaseIterable {
     case sword
     case crossbow
@@ -20,8 +21,6 @@ enum Weapon: CaseIterable {
     case knife
     case flamethrower
     case stick
-    
-
     
     var formattedName: String {
         switch self {

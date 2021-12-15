@@ -9,7 +9,7 @@ import Foundation
 
 class Trunk {
     
-    // Ouvrir la caisse
+    /// This function opens a trunk with a random weapon
     func open() -> Weapon {
         let weapon: Weapon
         weapon = Weapon.allCases.randomElement()!

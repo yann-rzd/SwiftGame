@@ -15,7 +15,6 @@
 		E4AD54232767567B00A07332 /* GoblinWarrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AD54222767567B00A07332 /* GoblinWarrior.swift */; };
 		E4AD54252767B66800A07332 /* EnumWarriors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AD54242767B66800A07332 /* EnumWarriors.swift */; };
 		E4B4B6D92760C17C00C6EBE7 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B4B6D82760C17C00C6EBE7 /* Error.swift */; };
-		E4B4B6DB2760C1B500C6EBE7 /* PrintString.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4B4B6DA2760C1B500C6EBE7 /* PrintString.swift */; };
 		E4D25A60274FFEF0001BC80F /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D25A5A274FFEF0001BC80F /* Player.swift */; };
 		E4D25A61274FFEF0001BC80F /* Trunk.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D25A5B274FFEF0001BC80F /* Trunk.swift */; };
 		E4D25A62274FFEF0001BC80F /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D25A5C274FFEF0001BC80F /* main.swift */; };
@@ -46,7 +45,6 @@
 		E4AD54222767567B00A07332 /* GoblinWarrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoblinWarrior.swift; sourceTree = "<group>"; };
 		E4AD54242767B66800A07332 /* EnumWarriors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnumWarriors.swift; sourceTree = "<group>"; };
 		E4B4B6D82760C17C00C6EBE7 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
-		E4B4B6DA2760C1B500C6EBE7 /* PrintString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrintString.swift; sourceTree = "<group>"; };
 		E4D25A5A274FFEF0001BC80F /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		E4D25A5B274FFEF0001BC80F /* Trunk.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trunk.swift; sourceTree = "<group>"; };
 		E4D25A5C274FFEF0001BC80F /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -98,7 +96,6 @@
 				E4D25A5D274FFEF0001BC80F /* Weapon.swift */,
 				E4D25A5B274FFEF0001BC80F /* Trunk.swift */,
 				E4B4B6D82760C17C00C6EBE7 /* Error.swift */,
-				E4B4B6DA2760C1B500C6EBE7 /* PrintString.swift */,
 				E4AD54242767B66800A07332 /* EnumWarriors.swift */,
 			);
 			path = SwiftGame;
@@ -163,7 +160,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4B4B6DB2760C1B500C6EBE7 /* PrintString.swift in Sources */,
 				E4D25A61274FFEF0001BC80F /* Trunk.swift in Sources */,
 				E4D25A65274FFEF0001BC80F /* Game.swift in Sources */,
 				E4D25A64274FFEF0001BC80F /* Warrior.swift in Sources */,

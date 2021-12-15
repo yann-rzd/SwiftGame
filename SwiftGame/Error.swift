@@ -7,7 +7,7 @@
 
 import Foundation
 
-
+/// Here is the list of all errors in the game
 enum Error: Swift.Error {
     case failedToReadTerminal
     case failedToConvertTerminalInputToInteger
