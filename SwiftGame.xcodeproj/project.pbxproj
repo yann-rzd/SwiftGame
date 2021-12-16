@@ -86,6 +86,18 @@
 				E4D25A5C274FFEF0001BC80F /* main.swift */,
 				E4D25A5F274FFEF0001BC80F /* Game.swift */,
 				E4D25A5A274FFEF0001BC80F /* Player.swift */,
+				E49D80E9276BA0DB00672DDA /* Warrior */,
+				E4D25A5D274FFEF0001BC80F /* Weapon.swift */,
+				E4D25A5B274FFEF0001BC80F /* Trunk.swift */,
+				E4B4B6D82760C17C00C6EBE7 /* Error.swift */,
+				E4AD54242767B66800A07332 /* EnumWarriors.swift */,
+			);
+			path = SwiftGame;
+			sourceTree = "<group>";
+		};
+		E49D80E9276BA0DB00672DDA /* Warrior */ = {
+			isa = PBXGroup;
+			children = (
 				E4D25A5E274FFEF0001BC80F /* Warrior.swift */,
 				E4AD54182767542C00A07332 /* ElfWarrior.swift */,
 				E4AD541A2767547900A07332 /* DwarfWarrior.swift */,
@@ -93,12 +105,8 @@
 				E4AD541E276754EB00A07332 /* WizardWarrior.swift */,
 				E4AD54202767560700A07332 /* GiantWarrior.swift */,
 				E4AD54222767567B00A07332 /* GoblinWarrior.swift */,
-				E4D25A5D274FFEF0001BC80F /* Weapon.swift */,
-				E4D25A5B274FFEF0001BC80F /* Trunk.swift */,
-				E4B4B6D82760C17C00C6EBE7 /* Error.swift */,
-				E4AD54242767B66800A07332 /* EnumWarriors.swift */,
 			);
-			path = SwiftGame;
+			path = Warrior;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

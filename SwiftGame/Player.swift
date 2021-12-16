@@ -39,13 +39,7 @@ class Player {
             return
         }
         
-        do {
-            try displayTeams(players: players)
-        } catch {
-            if let error = error as? Error {
-                print(error.description)
-            }
-        }
+        loopChooseDisplayTeams(players: players)
         
         let targetPlayer = loopChoosePlayer(from: players)    
         let warriorMakingAction = loopChooseWarrior(from: self)
@@ -54,13 +48,17 @@ class Player {
         try? warriorMakingAction.performWarriorAction(targetWarrior: targetWarrior)
     }
     
+    private func loopChooseDisplayTeams(players: [Player]) {
+        loopAction(action: { try displayTeams(players: players) })
+    }
+    
     
     /// <#Summay text for documentation#>
     /// - parameter <#parameterName#>: <#Description#>.
     /// - throws: <#Errors throwed#>
     /// - returns: <#Return values#>
     private func loopChooseWarrior(from player: Player) -> Warrior {
-        loopAction(action: chooseWarrior(from:), parameter: player)
+        loopAction(action: { try chooseWarrior(from: player) })
     }
     
     
@@ -69,7 +67,7 @@ class Player {
     /// - throws: <#Errors throwed#>
     /// - returns: <#Return values#>
     private func loopChoosePlayer(from players: [Player]) -> Player {
-        loopAction(action: choosePlayer(from:), parameter: players)
+        loopAction(action: { try choosePlayer(from: players) })
     }
     
     
@@ -77,10 +75,10 @@ class Player {
     /// - parameter <#parameterName#>: <#Description#>.
     /// - throws: <#Errors throwed#>
     /// - returns: <#Return values#>
-    private func loopAction<T, U>(action: (U) throws -> T, parameter: U) -> T {
+    private func loopAction<T>(action: () throws -> T) -> T {
         while true {
             do {
-                let chosenElement = try action(parameter)
+                let chosenElement = try action()
                 return chosenElement
             } catch {
                 if let error = error as? Error {
