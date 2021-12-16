@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E49D80EB276BA18300672DDA /* InputHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49D80EA276BA18300672DDA /* InputHelper.swift */; };
 		E4AD54192767542C00A07332 /* ElfWarrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AD54182767542C00A07332 /* ElfWarrior.swift */; };
 		E4AD541B2767547900A07332 /* DwarfWarrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AD541A2767547900A07332 /* DwarfWarrior.swift */; };
 		E4AD541D276754C900A07332 /* HumanWarrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AD541C276754C900A07332 /* HumanWarrior.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		E48944482746BFBB008C00B8 /* SwiftGame */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftGame; sourceTree = BUILT_PRODUCTS_DIR; };
+		E49D80EA276BA18300672DDA /* InputHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHelper.swift; sourceTree = "<group>"; };
 		E4AD54182767542C00A07332 /* ElfWarrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElfWarrior.swift; sourceTree = "<group>"; };
 		E4AD541A2767547900A07332 /* DwarfWarrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DwarfWarrior.swift; sourceTree = "<group>"; };
 		E4AD541C276754C900A07332 /* HumanWarrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HumanWarrior.swift; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 				E4D25A5C274FFEF0001BC80F /* main.swift */,
 				E4D25A5F274FFEF0001BC80F /* Game.swift */,
 				E4D25A5A274FFEF0001BC80F /* Player.swift */,
+				E49D80EA276BA18300672DDA /* InputHelper.swift */,
 				E49D80E9276BA0DB00672DDA /* Warrior */,
 				E4D25A5D274FFEF0001BC80F /* Weapon.swift */,
 				E4D25A5B274FFEF0001BC80F /* Trunk.swift */,
@@ -175,6 +178,7 @@
 				E4D25A63274FFEF0001BC80F /* Weapon.swift in Sources */,
 				E4AD54252767B66800A07332 /* EnumWarriors.swift in Sources */,
 				E4AD541D276754C900A07332 /* HumanWarrior.swift in Sources */,
+				E49D80EB276BA18300672DDA /* InputHelper.swift in Sources */,
 				E4D25A60274FFEF0001BC80F /* Player.swift in Sources */,
 				E4B4B6D92760C17C00C6EBE7 /* Error.swift in Sources */,
 				E4AD54192767542C00A07332 /* ElfWarrior.swift in Sources */,

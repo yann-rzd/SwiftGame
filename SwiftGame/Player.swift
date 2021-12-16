@@ -48,8 +48,13 @@ class Player {
         try? warriorMakingAction.performWarriorAction(targetWarrior: targetWarrior)
     }
     
+    
+    // MARK: Private
+    
+    private let inputHelper = InputHelper.shared
+    
     private func loopChooseDisplayTeams(players: [Player]) {
-        loopAction(action: { try displayTeams(players: players) })
+        inputHelper.loopAction(action: { try displayTeams(players: players) })
     }
     
     
@@ -58,7 +63,7 @@ class Player {
     /// - throws: <#Errors throwed#>
     /// - returns: <#Return values#>
     private func loopChooseWarrior(from player: Player) -> Warrior {
-        loopAction(action: { try chooseWarrior(from: player) })
+        inputHelper.loopAction(action: { try chooseWarrior(from: player) })
     }
     
     
@@ -67,26 +72,11 @@ class Player {
     /// - throws: <#Errors throwed#>
     /// - returns: <#Return values#>
     private func loopChoosePlayer(from players: [Player]) -> Player {
-        loopAction(action: { try choosePlayer(from: players) })
+        inputHelper.loopAction(action: { try choosePlayer(from: players) })
     }
     
     
-    /// <#Summay text for documentation#>
-    /// - parameter <#parameterName#>: <#Description#>.
-    /// - throws: <#Errors throwed#>
-    /// - returns: <#Return values#>
-    private func loopAction<T>(action: () throws -> T) -> T {
-        while true {
-            do {
-                let chosenElement = try action()
-                return chosenElement
-            } catch {
-                if let error = error as? Error {
-                    print(error.description)
-                }
-            }
-        }
-    }
+ 
     
     
     /// This function displays the team status of all players
@@ -134,7 +124,7 @@ class Player {
     private func chooseWarrior(from player: Player) throws -> Warrior {
         print("Which warrior do you want to choose from \(player.name)? (Enter the number of the warrior)")
         
-        let selectedWarrior = try chooseElement(from: player.team)
+        let selectedWarrior = try inputHelper.chooseElement(from: player.team)
         
         guard selectedWarrior.isAlive else {
             throw Error.selectedWarriorIsAlreadyDead
@@ -153,7 +143,7 @@ class Player {
     private func choosePlayer(from players: [Player]) throws -> Player {
         print("Which player do you want to target ? (Enter the number of the player)")
         
-        let selectedPlayer = try chooseElement(from: players)
+        let selectedPlayer = try inputHelper.chooseElement(from: players)
         
         guard !selectedPlayer.isEliminated else {
             throw Error.selectedPlayerIsAlreadyDead
@@ -165,29 +155,6 @@ class Player {
     }
     
     
-    /// <#Summay text for documentation#>
-    /// - parameter <#parameterName#>: <#Description#>.
-    /// - throws: <#Errors throwed#>
-    /// - returns: <#Return values#>
-    private func chooseElement<T>(from array: [T]) throws -> T {
-        
-        guard let indexStringInput = readLine() else {
-            throw Error.failedToReadTerminal
-        }
-        
-        guard let indexInput = Int(indexStringInput) else {
-            throw Error.inputIsNotAnInteger
-        }
-        
-        let elementIndex = indexInput - 1
-        
-        guard array.indices.contains(elementIndex) else {
-            throw Error.failedToAccessElementDueToIndexOutOfBounds
-        }
-        
-        let selectedElement = array[elementIndex]
 
-        return selectedElement
-    }
 
 }

@@ -59,7 +59,9 @@ class Game {
             }
         }
     }
-        
+    
+    
+    private let inputHelper = InputHelper.shared
     
     /// This function asks for the number of players participating in the game.
     private func askNumberOfPlayers() throws {
@@ -145,21 +147,7 @@ class Game {
     private func askWarriorType() throws -> EnumWarriors {
         print(getChoseWarriorTypeInstruction())
         
-        guard let warriorTypeIndexSelectionString = readLine() else {
-            throw Error.failedToReadTerminal
-        }
-        
-        guard let warriorTypeIndexSelection = Int(warriorTypeIndexSelectionString) else {
-            throw Error.failedToConvertTerminalInputToInteger
-        }
-        
-        let adaptedWarriorTypeIndexSelection = warriorTypeIndexSelection - 1
-        
-        guard EnumWarriors.allCases.indices.contains(adaptedWarriorTypeIndexSelection) else {
-            throw Error.failedToAccessElementDueToIndexOutOfBounds
-        }
-        
-        let selectedWarriorType = EnumWarriors.allCases[adaptedWarriorTypeIndexSelection]
+        let selectedWarriorType = try inputHelper.chooseElement(from: EnumWarriors.allCases)
         
         print("You chose the \(selectedWarriorType.name) !")
         
@@ -236,37 +224,24 @@ class Game {
     /// This function creates the warrior with its type, name and weapon previously defined
     /// - Returns: The created warrior
     private func createWarrior() -> Warrior {
-        while true {
-            do {
-                let warriorType = try askWarriorType()
-                let warriorName = try askWarriorName()
-                let weapon = try askWarriorWeapon()
-                
-                if warriorType == EnumWarriors.humanWarrior {
-                    let newWarrior = HumanWarrior(name: warriorName, weapon: weapon)
-                    return newWarrior
-                } else if warriorType == EnumWarriors.dwarfWarrior{
-                    let newWarrior = DwarfWarrior(name: warriorName, weapon: weapon)
-                    return newWarrior
-                } else if warriorType == EnumWarriors.elfWarrior{
-                    let newWarrior = ElfWarrior(name: warriorName, weapon: weapon)
-                    return newWarrior
-                } else if warriorType == EnumWarriors.giantWarrior{
-                    let newWarrior = GiantWarrior(name: warriorName, weapon: weapon)
-                    return newWarrior
-                } else if warriorType == EnumWarriors.wizardWarrior{
-                    let newWarrior = WizardWarrior(name: warriorName, weapon: weapon)
-                    return newWarrior
-                } else if warriorType == EnumWarriors.goblinWarrior{
-                    let newWarrior = GoblinWarrior(name: warriorName, weapon: weapon)
-                    return newWarrior
-                }
-                
-            } catch {
-                if let error = error as? Error {
-                    print(error.description)
-                }
-            }
+        
+        let warriorType = inputHelper.loopAction(action: { try askWarriorType() })
+        let warriorName = inputHelper.loopAction(action: { try askWarriorName() })
+        let weapon = inputHelper.loopAction(action: { try askWarriorWeapon() })
+        
+        switch warriorType {
+        case .humanWarrior:
+            return HumanWarrior(name: warriorName, weapon: weapon)
+        case .dwarfWarrior:
+            return DwarfWarrior(name: warriorName, weapon: weapon)
+        case .elfWarrior:
+            return ElfWarrior(name: warriorName, weapon: weapon)
+        case .giantWarrior:
+            return GiantWarrior(name: warriorName, weapon: weapon)
+        case .wizardWarrior:
+            return WizardWarrior(name: warriorName, weapon: weapon)
+        case .goblinWarrior:
+            return GoblinWarrior(name: warriorName, weapon: weapon)
         }
     }
     
