@@ -9,11 +9,15 @@ import Foundation
 
 class Warrior {
     let name: String
-    var lifeRange = 0...5
-    var currentLife = 5
+    var warriorType: String { "" }
+    var description: String { "" }
+    var capacity: String { "" }
+    var lifeRange: ClosedRange<Int> { 0...5 }
+    lazy var currentLife = lifeRange.upperBound
     var isAlive = true
     var weapon: Weapon
-    var healAmountOfLife = 15
+    var basicStrength: Int { 0 }
+    var healAmountOfLife: Int { 15 }
     
     init(name: String, weapon: Weapon) {
         self.name = name
@@ -23,6 +27,7 @@ class Warrior {
     
     /// This function displays the warrior's information
     func displayInformation() {
+        print("Type of warrior: \(warriorType)")
         print("\(name)'s life = \(currentLife)")
         print("\(name)'s weapon = \(weapon.description)\n")
     }
@@ -76,7 +81,7 @@ class Warrior {
             }
             
             if randomInt < 90 {
-                warrior.currentLife = warrior.currentLife - weapon.damagePerHit
+                warrior.currentLife = warrior.currentLife - weapon.damagePerHit - basicStrength
                 if warrior.currentLife <= lifeRange.lowerBound {
                     warrior.currentLife = lifeRange.lowerBound
                     warrior.isAlive = false
@@ -87,7 +92,7 @@ class Warrior {
                 let trunk = Trunk()
                 let trunkOpened = trunk.open()
                 print("\(trunkIsOpening) \(trunkOpened.description) !")
-                warrior.currentLife = warrior.currentLife - trunkOpened.damagePerHit
+                warrior.currentLife = warrior.currentLife - trunkOpened.damagePerHit - basicStrength
                 if warrior.currentLife <= lifeRange.lowerBound {
                     warrior.currentLife = lifeRange.lowerBound
                     warrior.isAlive = false

@@ -9,39 +9,9 @@ import Foundation
 
 class GoblinWarrior: Warrior {
     
-    private let warriorType = "Goblin 🧟‍♂️"
-    private let description = "Goblins are very cunning and talk a lot 👾"
-    private let capacity = "More life 🟢"
+    override var warriorType: String { "Goblin 🧟‍♂️" }
+    override var description: String { "Goblins are very cunning and talk a lot 👾" }
+    override var capacity: String { "More life 🟢" }
+    override var lifeRange: ClosedRange<Int> { 0...10 }
     
-    override var lifeRange : ClosedRange<Int> {
-        get {
-            return 1...10
-        }
-        set {
-            // nothing
-        }
-    }
-    
-    override var currentLife: Int {
-        get {
-            return 10
-        }
-        set {
-            // nothing
-        }
-    }
-    
-    /// This function describes the warrior
-    func describeWarrior() {
-        print("This warrior is a \(warriorType)\n"
-              + "\n\(description)"
-              + "\nTheir capacity: \(capacity)")
-    }
-    
-    /// This function displays the information of the warrior
-    override func displayInformation() {
-        print("Type of warrior: \(warriorType)")
-        print("\(name)'s life = \(currentLife)")
-        print("\(name)'s weapon = \(weapon.description)\n")
-    }
 }

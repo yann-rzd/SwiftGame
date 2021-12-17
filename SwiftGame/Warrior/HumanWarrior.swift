@@ -9,21 +9,8 @@ import Foundation
 
 class HumanWarrior: Warrior {
     
-    private let warriorType = "Human 👨🏻"
-    private let description = "Humans are great colonizers 🏃‍♂️"
-    private let capacity = "No particular capacity ⭕️"
-    
-    /// This function describes the warrior
-    func describeWarrior() {
-        print("This warrior is a \(warriorType)\n"
-              + "\n\(description)"
-              + "\nTheir capacity: \(capacity)")
-    }
-    
-    /// This function displays the warrior's information
-    override func displayInformation() {
-        print("Type of warrior: \(warriorType)")
-        print("\(name)'s life = \(currentLife)")
-        print("\(name)'s weapon = \(weapon.description)\n")
-    }
+    override var warriorType: String { "Human 👨🏻" }
+    override var description: String { "Humans are great colonizers 🏃‍♂️" }
+    override var capacity: String { "No particular capacity ⭕️" }
+
 }
