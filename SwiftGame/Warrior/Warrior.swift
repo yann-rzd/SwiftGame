@@ -19,7 +19,7 @@ class Warrior {
     lazy var currentLife = lifeRange.upperBound
     var isAlive = true
     var weapon: Weapon
-    var basicStrength: Int { 0 }
+    var rawStrength: Int { 0 }
     var healAmountOfLife: Int { 15 }
     
     init(name: String, weapon: Weapon) {
@@ -78,7 +78,7 @@ class Warrior {
             }
             
             if randomInt < 90 {
-                warrior.currentLife = warrior.currentLife - weapon.damagePerHit - basicStrength
+                warrior.currentLife = warrior.currentLife - weapon.damagePerHit - rawStrength
                 if warrior.currentLife <= lifeRange.lowerBound {
                     warrior.currentLife = lifeRange.lowerBound
                     warrior.isAlive = false
@@ -89,7 +89,7 @@ class Warrior {
                 let trunk = Trunk()
                 let trunkOpened = trunk.open()
                 print("\(trunkIsOpening) \(trunkOpened.description) !")
-                warrior.currentLife = warrior.currentLife - trunkOpened.damagePerHit - basicStrength
+                warrior.currentLife = warrior.currentLife - trunkOpened.damagePerHit - rawStrength
                 if warrior.currentLife <= lifeRange.lowerBound {
                     warrior.currentLife = lifeRange.lowerBound
                     warrior.isAlive = false

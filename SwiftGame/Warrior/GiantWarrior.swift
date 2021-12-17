@@ -12,7 +12,7 @@ class GiantWarrior: Warrior {
     override var warriorType: String { "Giant 🗿" }
     override var description: String { "Giants are forces of nature 🏔" }
     override var capacity: String { "Cannot heal ❌ but have a formidable strength 🦾" }
-    override var basicStrength: Int { 10 }
+    override var rawStrength: Int { 10 }
     override var healAmountOfLife: Int { 0 }
     
     

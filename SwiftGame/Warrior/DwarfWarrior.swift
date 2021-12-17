@@ -13,6 +13,6 @@ class DwarfWarrior: Warrior {
     override var description: String { "Dwarves are strong builders 🏛" }
     override var capacity: String { "Less life 🔴 but more attack 📈" }
     override var lifeRange: ClosedRange<Int> { 0...3 }
-    override var basicStrength: Int { 5 }
+    override var rawStrength: Int { 5 }
     
 }
