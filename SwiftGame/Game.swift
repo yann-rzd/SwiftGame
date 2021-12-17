@@ -9,6 +9,8 @@ import Foundation
 
 
 class Game {
+    
+    // MARK: - PRIVATE : properties
     private var players: [Player] = []
     private var numberOfPlayers = 0 // Faire une propriété calculée
     private let numberOfPlayersRange = 2..<5
@@ -22,6 +24,8 @@ class Game {
         players.filter { !$0.isEliminated }
     }
     
+    
+    // MARK: - PUBLIC: methods
     /// This function starts the game
     func start() {
         print("Do you want to start a new game? (1 for yes, 2 for no)")
@@ -60,7 +64,7 @@ class Game {
         }
     }
     
-    
+    //MARK: - PRIVATE: methods
     private let inputHelper = InputHelper.shared
     
     /// This function asks for the number of players participating in the game.

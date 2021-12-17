@@ -7,15 +7,12 @@
 
 import Foundation
 
-
+#warning("Commenter la classe")
 final class InputHelper {
     private init() { }
     static let shared = InputHelper()
     
-    /// <#Summay text for documentation#>
-    /// - parameter <#parameterName#>: <#Description#>.
-    /// - throws: <#Errors throwed#>
-    /// - returns: <#Return values#>
+    #warning("Commenter la fonction")
     func loopAction<T>(action: () throws -> T) -> T {
         while true {
             do {
@@ -29,10 +26,7 @@ final class InputHelper {
         }
     }
     
-    /// <#Summay text for documentation#>
-    /// - parameter <#parameterName#>: <#Description#>.
-    /// - throws: <#Errors throwed#>
-    /// - returns: <#Return values#>
+    #warning("Commenter la fonction")
     func chooseElement<T>(from array: [T]) throws -> T {
         
         guard let indexStringInput = readLine() else {

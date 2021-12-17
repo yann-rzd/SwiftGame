@@ -29,7 +29,7 @@ enum Error: Swift.Error {
         case .failedToConvertTerminalInputToInteger:
             return "Your request could not be converted to an integer ❌"
         case .failedToAccessElementDueToIndexOutOfBounds:
-            return "The element is not accessible because the index is out of bouds ❌"
+            return "The element is not accessible because you have filled in an element that does not exist ❌"
         case .failedToCreateNameDueToWrongFormat:
             return "The name could not be created because the format is not respected ❌"
         case .faildeToCreateNameDueToDuplication:

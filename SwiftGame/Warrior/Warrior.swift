@@ -8,6 +8,9 @@
 import Foundation
 
 class Warrior {
+    
+    // MARK: - PUBLIC: properties
+    
     let name: String
     var warriorType: String { "" }
     var description: String { "" }
@@ -24,6 +27,8 @@ class Warrior {
         self.weapon = weapon
     }
     
+    
+    // MARK: - PUBLIC: methods
     
     /// This function displays the warrior's information
     func displayInformation() {

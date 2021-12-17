@@ -8,6 +8,9 @@
 import Foundation
 
 class Player {
+    
+    // MARK: PUBLIC: properties
+    
     let name: String
     
     var isEliminated: Bool {
@@ -21,15 +24,7 @@ class Player {
     }
     
     
-    /// This function checks if the name of a warrior is already in use
-    /// - parameter name: The name we want to give to our warrior
-    /// - returns: true or false
-    func getHasWarriorInTeamWithSameName(name: String) -> Bool {
-        team.contains {
-            $0.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-        }
-    }
-    
+    // MARK: PUBLIC: methods
     
     /// This feature allows the player to play when it is his turn
     /// - parameter players: The array with all the players.
@@ -47,36 +42,6 @@ class Player {
         
         try? warriorMakingAction.performWarriorAction(targetWarrior: targetWarrior)
     }
-    
-    
-    // MARK: Private
-    
-    private let inputHelper = InputHelper.shared
-    
-    private func loopChooseDisplayTeams(players: [Player]) {
-        inputHelper.loopAction(action: { try displayTeams(players: players) })
-    }
-    
-    
-    /// <#Summay text for documentation#>
-    /// - parameter <#parameterName#>: <#Description#>.
-    /// - throws: <#Errors throwed#>
-    /// - returns: <#Return values#>
-    private func loopChooseWarrior(from player: Player) -> Warrior {
-        inputHelper.loopAction(action: { try chooseWarrior(from: player) })
-    }
-    
-    
-    /// <#Summay text for documentation#>
-    /// - parameter <#parameterName#>: <#Description#>.
-    /// - throws: <#Errors throwed#>
-    /// - returns: <#Return values#>
-    private func loopChoosePlayer(from players: [Player]) -> Player {
-        inputHelper.loopAction(action: { try choosePlayer(from: players) })
-    }
-    
-    
- 
     
     
     /// This function displays the team status of all players
@@ -116,6 +81,35 @@ class Player {
     }
     
     
+    /// This function checks if the name of a warrior is already in use
+    /// - parameter name: The name we want to give to our warrior
+    /// - returns: true or false
+    func getHasWarriorInTeamWithSameName(name: String) -> Bool {
+        team.contains {
+            $0.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+    }
+    
+    
+    // MARK: PRIVATE: methods
+    
+    #warning("Commenter la fonction")
+    private let inputHelper = InputHelper.shared
+    
+    #warning("Commenter la fonction")
+    private func loopChooseDisplayTeams(players: [Player]) {
+        inputHelper.loopAction(action: { try displayTeams(players: players) })
+    }
+    
+    #warning("Commenter la fonction")
+    private func loopChooseWarrior(from player: Player) -> Warrior {
+        inputHelper.loopAction(action: { try chooseWarrior(from: player) })
+    }
+    
+    #warning("Commenter la fonction")
+    private func loopChoosePlayer(from players: [Player]) -> Player {
+        inputHelper.loopAction(action: { try choosePlayer(from: players) })
+    }
     
     /// This function allows you to choose the warrior who will perform the action
     /// - parameter player: the player targeted
@@ -153,8 +147,4 @@ class Player {
         
         return selectedPlayer
     }
-    
-    
-
-
 }
