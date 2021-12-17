@@ -30,14 +30,6 @@ class Warrior {
     
     // MARK: - PUBLIC: methods
     
-    /// This function displays the warrior's information
-    func displayInformation() {
-        print("Type of warrior: \(warriorType)")
-        print("\(name)'s life = \(currentLife)")
-        print("\(name)'s weapon = \(weapon.description)\n")
-    }
-    
-    
     /// This function allows the warrior to play his turn (attack or heal)
     /// - parameter targetWarrior: The warrior targeted
     /// - throws: The user didn't press 1 or 2
@@ -127,5 +119,12 @@ class Warrior {
                 warrior.currentLife = lifeRange.upperBound
             }
         }
+    }
+    
+    /// This function displays the warrior's information
+    func displayInformation() {
+        print("Type of warrior: \(warriorType)")
+        print("\(name)'s life = \(currentLife)")
+        print("\(name)'s weapon = \(weapon.description)\n")
     }
 }

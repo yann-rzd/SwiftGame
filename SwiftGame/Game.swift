@@ -225,6 +225,7 @@ class Game {
         return selectedWeapon
     }
     
+    
     /// This function creates the warrior with its type, name and weapon previously defined
     /// - Returns: The created warrior
     private func createWarrior() -> Warrior {

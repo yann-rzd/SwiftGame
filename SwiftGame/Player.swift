@@ -93,20 +93,28 @@ class Player {
     
     // MARK: PRIVATE: methods
     
-    #warning("Commenter la fonction")
+    /// Get the functions of the InputHelper class
     private let inputHelper = InputHelper.shared
     
-    #warning("Commenter la fonction")
+    
+    /// This function makes a loop on the function displayTeams
+    /// - parameter players: [Player]
     private func loopChooseDisplayTeams(players: [Player]) {
         inputHelper.loopAction(action: { try displayTeams(players: players) })
     }
     
-    #warning("Commenter la fonction")
+    
+    /// This function makes a loop on the function chooseWarrior
+    /// - parameter player: Player
+    /// - returns: Warrior
     private func loopChooseWarrior(from player: Player) -> Warrior {
         inputHelper.loopAction(action: { try chooseWarrior(from: player) })
     }
     
-    #warning("Commenter la fonction")
+    
+    /// This function makes a loop on the function choosePlayer
+    /// - parameter players: [Player].
+    /// - returns: Player
     private func loopChoosePlayer(from players: [Player]) -> Player {
         inputHelper.loopAction(action: { try choosePlayer(from: players) })
     }
