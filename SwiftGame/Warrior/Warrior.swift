@@ -9,7 +9,7 @@ import Foundation
 
 class Warrior {
     
-    // MARK: - PUBLIC: properties
+    // MARK: - INTERNAL: properties
     
     let name: String
     var warriorType: String { "" }
@@ -28,7 +28,7 @@ class Warrior {
     }
     
     
-    // MARK: - PUBLIC: methods
+    // MARK: - INTERNAL: methods
     
     /// This function allows the warrior to play his turn (attack or heal)
     /// - parameter targetWarrior: The warrior targeted

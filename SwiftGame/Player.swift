@@ -9,7 +9,7 @@ import Foundation
 
 class Player {
     
-    // MARK: PUBLIC: properties
+    // MARK: INTERNAL: properties
     
     let name: String
     
@@ -24,7 +24,7 @@ class Player {
     }
     
     
-    // MARK: PUBLIC: methods
+    // MARK: INTERNAL: methods
     
     /// This feature allows the player to play when it is his turn
     /// - parameter players: The array with all the players.

@@ -25,7 +25,7 @@ class Game {
     }
     
     
-    // MARK: - PUBLIC: methods
+    // MARK: - INTERNAL: methods
     /// This function starts the game
     func start() {
         print("Do you want to start a new game? (1 for yes, 2 for no)")
@@ -89,7 +89,7 @@ class Game {
     
     
     /// This function asks the player to choose a name
-    /// - returns: The name of the player
+    /// - returns: The name of the playerg
     private func askPlayerName() throws -> String {
         print("Choose the name of your player:")
         
