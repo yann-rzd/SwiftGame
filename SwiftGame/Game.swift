@@ -12,9 +12,9 @@ class Game {
     
     // MARK: - PRIVATE : properties
     private var players: [Player] = []
-    private var numberOfPlayers = 0 // Faire une propriété calculée
+    private var numberOfPlayers = 0
     private let numberOfPlayersRange = 2..<5
-    private var numberOfRounds = 0 // Faire une popriété calculée
+    private var numberOfRounds = 0
     
     private var isFightPhaseOver: Bool {
         remainingPlayers.count <= 1

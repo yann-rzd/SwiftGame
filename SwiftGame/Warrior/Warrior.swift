@@ -68,33 +68,32 @@ class Warrior {
     func attack(warrior: Warrior) throws {
         let randomInt = Int.random(in: 1...100)
         
-        while true {
-            guard isAlive == true else {
-                throw Error.selectedWarriorIsAlreadyDead
+        guard isAlive else {
+            throw Error.selectedWarriorIsAlreadyDead
+        }
+        
+        guard warrior.isAlive else {
+            throw Error.selectedWarriorTargetedIsAlreadyDead
+        }
+        
+        if randomInt < 90 {
+            warrior.currentLife = warrior.currentLife - weapon.damagePerHit - rawStrength
+            if warrior.currentLife <= lifeRange.lowerBound {
+                warrior.currentLife = lifeRange.lowerBound
+                warrior.isAlive = false
+                print("This warrior is dead 💀")
             }
+        } else {
+            let trunkIsOpening = "A trunk appears! It contains a weapon... It is"
+            let trunk = Trunk()
+            let trunkOpened = trunk.open()
+            print("\(trunkIsOpening) \(trunkOpened.description) !")
+            warrior.currentLife = warrior.currentLife - trunkOpened.damagePerHit - rawStrength
             
-            guard warrior.isAlive == true else {
-                throw Error.selectedWarriorTargetedIsAlreadyDead
-            }
-            
-            if randomInt < 90 {
-                warrior.currentLife = warrior.currentLife - weapon.damagePerHit - rawStrength
-                if warrior.currentLife <= lifeRange.lowerBound {
-                    warrior.currentLife = lifeRange.lowerBound
-                    warrior.isAlive = false
-                    print("This warrior is dead 💀")
-                }
-            } else {
-                let trunkIsOpening = "A trunk appears! It contains a weapon... It is"
-                let trunk = Trunk()
-                let trunkOpened = trunk.open()
-                print("\(trunkIsOpening) \(trunkOpened.description) !")
-                warrior.currentLife = warrior.currentLife - trunkOpened.damagePerHit - rawStrength
-                if warrior.currentLife <= lifeRange.lowerBound {
-                    warrior.currentLife = lifeRange.lowerBound
-                    warrior.isAlive = false
-                    print("This warrior is dead 💀")
-                }
+            if warrior.currentLife <= lifeRange.lowerBound {
+                warrior.currentLife = lifeRange.lowerBound
+                warrior.isAlive = false
+                print("This warrior is dead 💀")
             }
         }
     }
