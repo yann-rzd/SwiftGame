@@ -11,21 +11,6 @@ import Foundation
 
 final class Game {
     
-    // MARK: - PRIVATE : properties
-    private var players: [Player] = []
-    private var numberOfPlayers = 0
-    private let numberOfPlayersRange = 2..<5
-    private var numberOfRounds = 0
-    
-    private var isFightPhaseOver: Bool {
-        remainingPlayers.count <= 1
-    }
-    
-    private var remainingPlayers: [Player] {
-        players.filter { !$0.isEliminated }
-    }
-    
-    
     // MARK: - INTERNAL: methods
     /// This function starts the game
     func start() {
@@ -64,6 +49,22 @@ final class Game {
             }
         }
     }
+    
+    
+    // MARK: - PRIVATE : properties
+    private var players: [Player] = []
+    private var numberOfPlayers = 0
+    private let numberOfPlayersRange = 2..<5
+    private var numberOfRounds = 0
+    
+    private var isFightPhaseOver: Bool {
+        remainingPlayers.count <= 1
+    }
+    
+    private var remainingPlayers: [Player] {
+        players.filter { !$0.isEliminated }
+    }
+    
     
     //MARK: - PRIVATE: methods
     private let inputHelper = InputHelper.shared
