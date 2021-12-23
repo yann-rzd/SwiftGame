@@ -8,7 +8,7 @@
 import Foundation
 
 /// Here is the list of all errors in the game
-enum Error: Swift.Error {
+enum GameError: Swift.Error {
     case failedToReadTerminal
     case failedToConvertTerminalInputToInteger
     case failedToAccessElementDueToIndexOutOfBounds

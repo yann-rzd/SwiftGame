@@ -36,7 +36,7 @@ final class Game {
                         startFightPhase()
                         displayWinner()
                     } catch {
-                        if let error = error as? Error {
+                        if let error = error as? GameError {
                             print(error.description)
                         }
                     }
@@ -74,15 +74,15 @@ final class Game {
         print("How many players do you want to play with? (You must enter a number between 2 and 5 inclusive)")
         
         guard let answer = readLine() else {
-            throw Error.failedToReadTerminal
+            throw GameError.failedToReadTerminal
         }
         
         guard let number = Int(answer) else {
-            throw Error.failedToConvertTerminalInputToInteger
+            throw GameError.failedToConvertTerminalInputToInteger
         }
         
         guard numberOfPlayersRange.contains(number) else {
-            throw Error.failedToAccessElementDueToIndexOutOfBounds
+            throw GameError.failedToAccessElementDueToIndexOutOfBounds
         }
         
         print("You want to play with \(number) players.\n")
@@ -96,19 +96,19 @@ final class Game {
         print("Choose the name of your player:")
         
         guard let name = readLine() else {
-            throw Error.failedToReadTerminal
+            throw GameError.failedToReadTerminal
         }
         
         guard !name.contains(" ") else {
-            throw Error.failedToCreateNameDueToWrongFormat
+            throw GameError.failedToCreateNameDueToWrongFormat
         }
         
         guard name.count <= 20 else {
-            throw Error.failedToCreateNameDueToWrongFormat
+            throw GameError.failedToCreateNameDueToWrongFormat
         }
         
         guard !players.contains(where: { $0.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) }) else {
-            throw Error.faildeToCreateNameDueToDuplication
+            throw GameError.faildeToCreateNameDueToDuplication
         }
         
         print("Your player is \(name)!\n"
@@ -126,7 +126,7 @@ final class Game {
                 let newPlayer = Player(name: playerName)
                 return newPlayer
             } catch {
-                if let error = error as? Error {
+                if let error = error as? GameError {
                     print(error.description)
                 }
             }
@@ -167,19 +167,19 @@ final class Game {
         print("Choose the name of your warrior:")
         
         guard let name = readLine() else {
-            throw Error.failedToReadTerminal
+            throw GameError.failedToReadTerminal
         }
         
         guard !name.contains(" ") else {
-            throw Error.failedToCreateNameDueToWrongFormat
+            throw GameError.failedToCreateNameDueToWrongFormat
         }
         
         guard name.count <= 20 else {
-            throw Error.failedToCreateNameDueToWrongFormat
+            throw GameError.failedToCreateNameDueToWrongFormat
         }
         
         guard !players.contains(where: { $0.getHasWarriorInTeamWithSameName(name: name) }) else {
-            throw Error.faildeToCreateNameDueToDuplication
+            throw GameError.faildeToCreateNameDueToDuplication
         }
         
         print("Your player is \(name)!\n")
@@ -208,17 +208,17 @@ final class Game {
         print(getChoseWeaponInstruction())
         
         guard let weaponIndexSelectionString = readLine() else {
-            throw Error.failedToReadTerminal
+            throw GameError.failedToReadTerminal
         }
         
         guard let weaponIndexSelection = Int(weaponIndexSelectionString) else {
-            throw Error.failedToConvertTerminalInputToInteger
+            throw GameError.failedToConvertTerminalInputToInteger
         }
         
         let adaptedWeaponIndexSelection = weaponIndexSelection - 1
         
         guard Weapon.allCases.indices.contains(adaptedWeaponIndexSelection) else {
-            throw Error.failedToAccessElementDueToIndexOutOfBounds
+            throw GameError.failedToAccessElementDueToIndexOutOfBounds
         }
         
         let selectedWeapon = Weapon.allCases[adaptedWeaponIndexSelection]

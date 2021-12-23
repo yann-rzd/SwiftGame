@@ -50,15 +50,15 @@ final class Player {
         print("Do you want to display the teams? (print 1 for yes, 2 for no)")
         
         guard let answer = readLine() else {
-            throw Error.failedToReadTerminal
+            throw GameError.failedToReadTerminal
         }
         
         guard let number = Int(answer) else {
-            throw Error.inputIsNotAnInteger
+            throw GameError.inputIsNotAnInteger
         }
         
         guard number == 1 || number == 2 else {
-            throw Error.inputIsNotOneOrTwo
+            throw GameError.inputIsNotOneOrTwo
         }
               
         if number == 1 {
@@ -129,7 +129,7 @@ final class Player {
         let selectedWarrior = try inputHelper.chooseElement(from: player.team)
         
         guard selectedWarrior.isAlive else {
-            throw Error.selectedWarriorIsAlreadyDead
+            throw GameError.selectedWarriorIsAlreadyDead
         }
         
         print("The warrior \(selectedWarrior.name) takes action!")
@@ -148,7 +148,7 @@ final class Player {
         let selectedPlayer = try inputHelper.chooseElement(from: players)
         
         guard !selectedPlayer.isEliminated else {
-            throw Error.selectedPlayerIsAlreadyDead
+            throw GameError.selectedPlayerIsAlreadyDead
         }
         
         print("You chose to target \(selectedPlayer.name)!")
