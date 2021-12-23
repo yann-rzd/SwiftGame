@@ -66,6 +66,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E442122F2774C40D00D2412F /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				E4B4B6D82760C17C00C6EBE7 /* Error.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
 		E489443F2746BFBB008C00B8 = {
 			isa = PBXGroup;
 			children = (
@@ -92,7 +100,7 @@
 				E49D80E9276BA0DB00672DDA /* Warrior */,
 				E4D25A5D274FFEF0001BC80F /* Weapon.swift */,
 				E4D25A5B274FFEF0001BC80F /* Trunk.swift */,
-				E4B4B6D82760C17C00C6EBE7 /* Error.swift */,
+				E442122F2774C40D00D2412F /* Error */,
 				E4AD54242767B66800A07332 /* EnumWarriors.swift */,
 			);
 			path = SwiftGame;
