@@ -40,15 +40,15 @@ class Warrior {
         
         while true {
             guard let answer = readLine() else {
-                throw GameError.failedToReadTerminal
+                throw WarriorError.failedToReadTerminal
             }
             
             guard let number = Int(answer) else {
-                throw GameError.inputIsNotAnInteger
+                throw WarriorError.inputIsNotAnInteger
             }
             
             guard number == 1 || number == 2 else {
-                throw GameError.inputIsNotOneOrTwo
+                throw WarriorError.inputIsNotOneOrTwo
             }
 
             if number == 1 {
@@ -69,11 +69,11 @@ class Warrior {
     /// - note: There is a 10% chance that a trunk will open
     func attack(warrior: Warrior) throws {
         guard isAlive else {
-            throw GameError.selectedWarriorIsAlreadyDead
+            throw WarriorError.selectedWarriorIsAlreadyDead
         }
         
         guard warrior.isAlive else {
-            throw GameError.selectedWarriorTargetedIsAlreadyDead
+            throw WarriorError.selectedWarriorTargetedIsAlreadyDead
         }
         
         if let newSingleUsageWeapon = try? handleTrunkAppeareance() {
@@ -120,11 +120,11 @@ class Warrior {
         
         while true {
             guard isAlive == true else {
-                throw GameError.selectedWarriorIsAlreadyDead
+                throw WarriorError.selectedWarriorIsAlreadyDead
             }
             
             guard warrior.isAlive == true else {
-                throw GameError.selectedWarriorTargetedIsAlreadyDead
+                throw WarriorError.selectedWarriorTargetedIsAlreadyDead
             }
             
             warrior.currentLife = warrior.currentLife + healAmountOfLife

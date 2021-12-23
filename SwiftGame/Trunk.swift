@@ -16,7 +16,7 @@ class Trunk {
     /// This function opens a trunk with a random weapon
     func open() throws -> Weapon {
         guard let weapon = Weapon.allCases.randomElement() else {
-            throw Error.noWeaponAreListedInTheGame
+            throw TrunkError.noWeaponAreListedInTheGame
         }
        
         return weapon

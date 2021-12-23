@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E44212312774C4A900D2412F /* PlayerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44212302774C4A900D2412F /* PlayerError.swift */; };
+		E44212332774C4BC00D2412F /* WarriorError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44212322774C4BC00D2412F /* WarriorError.swift */; };
+		E44212352774C87500D2412F /* InputHelperError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44212342774C87500D2412F /* InputHelperError.swift */; };
+		E44212372774C98500D2412F /* TrunkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44212362774C98500D2412F /* TrunkError.swift */; };
 		E49D80EB276BA18300672DDA /* InputHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49D80EA276BA18300672DDA /* InputHelper.swift */; };
 		E4AD54192767542C00A07332 /* ElfWarrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AD54182767542C00A07332 /* ElfWarrior.swift */; };
 		E4AD541B2767547900A07332 /* DwarfWarrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4AD541A2767547900A07332 /* DwarfWarrior.swift */; };
@@ -37,6 +41,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		E44212302774C4A900D2412F /* PlayerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerError.swift; sourceTree = "<group>"; };
+		E44212322774C4BC00D2412F /* WarriorError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarriorError.swift; sourceTree = "<group>"; };
+		E44212342774C87500D2412F /* InputHelperError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHelperError.swift; sourceTree = "<group>"; };
+		E44212362774C98500D2412F /* TrunkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrunkError.swift; sourceTree = "<group>"; };
 		E48944482746BFBB008C00B8 /* SwiftGame */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SwiftGame; sourceTree = BUILT_PRODUCTS_DIR; };
 		E49D80EA276BA18300672DDA /* InputHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHelper.swift; sourceTree = "<group>"; };
 		E4AD54182767542C00A07332 /* ElfWarrior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElfWarrior.swift; sourceTree = "<group>"; };
@@ -70,6 +78,10 @@
 			isa = PBXGroup;
 			children = (
 				E4B4B6D82760C17C00C6EBE7 /* GameError.swift */,
+				E44212302774C4A900D2412F /* PlayerError.swift */,
+				E44212322774C4BC00D2412F /* WarriorError.swift */,
+				E44212342774C87500D2412F /* InputHelperError.swift */,
+				E44212362774C98500D2412F /* TrunkError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -182,6 +194,9 @@
 				E4D25A61274FFEF0001BC80F /* Trunk.swift in Sources */,
 				E4D25A65274FFEF0001BC80F /* Game.swift in Sources */,
 				E4D25A64274FFEF0001BC80F /* Warrior.swift in Sources */,
+				E44212352774C87500D2412F /* InputHelperError.swift in Sources */,
+				E44212312774C4A900D2412F /* PlayerError.swift in Sources */,
+				E44212372774C98500D2412F /* TrunkError.swift in Sources */,
 				E4AD54212767560800A07332 /* GiantWarrior.swift in Sources */,
 				E4D25A63274FFEF0001BC80F /* Weapon.swift in Sources */,
 				E4AD54252767B66800A07332 /* EnumWarriors.swift in Sources */,
@@ -194,6 +209,7 @@
 				E4AD54232767567B00A07332 /* GoblinWarrior.swift in Sources */,
 				E4D25A62274FFEF0001BC80F /* main.swift in Sources */,
 				E4AD541B2767547900A07332 /* DwarfWarrior.swift in Sources */,
+				E44212332774C4BC00D2412F /* WarriorError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

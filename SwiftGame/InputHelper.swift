@@ -21,7 +21,7 @@ final class InputHelper {
                 let chosenElement = try action()
                 return chosenElement
             } catch {
-                if let error = error as? GameError {
+                if let error = error as? InputHelperError {
                     print(error.description)
                 }
             }
@@ -36,17 +36,17 @@ final class InputHelper {
     func chooseElement<T>(from array: [T]) throws -> T {
         
         guard let indexStringInput = readLine() else {
-            throw GameError.failedToReadTerminal
+            throw InputHelperError.failedToReadTerminal
         }
         
         guard let indexInput = Int(indexStringInput) else {
-            throw GameError.inputIsNotAnInteger
+            throw InputHelperError.inputIsNotAnInteger
         }
         
         let elementIndex = indexInput - 1
         
         guard array.indices.contains(elementIndex) else {
-            throw GameError.failedToAccessElementDueToIndexOutOfBounds
+            throw InputHelperError.failedToAccessElementDueToIndexOutOfBounds
         }
         
         let selectedElement = array[elementIndex]
