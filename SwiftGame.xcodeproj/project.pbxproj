@@ -111,9 +111,9 @@
 				E49D80EA276BA18300672DDA /* InputHelper.swift */,
 				E49D80E9276BA0DB00672DDA /* Warrior */,
 				E4D25A5D274FFEF0001BC80F /* Weapon.swift */,
+				E4AD54242767B66800A07332 /* EnumWarriors.swift */,
 				E4D25A5B274FFEF0001BC80F /* Trunk.swift */,
 				E442122F2774C40D00D2412F /* Error */,
-				E4AD54242767B66800A07332 /* EnumWarriors.swift */,
 			);
 			path = SwiftGame;
 			sourceTree = "<group>";
