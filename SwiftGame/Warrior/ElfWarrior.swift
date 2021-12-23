@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ElfWarrior: Warrior {
+final class ElfWarrior: Warrior {
     
     override var warriorType: String { "Elf 🧝‍♀️" }
     override var description: String { "Elves are nature spirits 🌳" }

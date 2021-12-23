@@ -8,7 +8,8 @@
 import Foundation
 
 
-class Game {
+
+final class Game {
     
     // MARK: - PRIVATE : properties
     private var players: [Player] = []

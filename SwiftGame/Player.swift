@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Player {
+final class Player {
     
     // MARK: INTERNAL: properties
     

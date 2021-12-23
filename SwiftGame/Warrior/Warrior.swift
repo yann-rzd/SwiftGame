@@ -17,7 +17,9 @@ class Warrior {
     var capacity: String { "" }
     var lifeRange: ClosedRange<Int> { 0...5 }
     lazy var currentLife = lifeRange.upperBound
-    var isAlive = true
+    var isAlive: Bool {
+        currentLife > 0
+    }
     var weapon: Weapon
     var rawStrength: Int { 0 }
     var healAmountOfLife: Int { 15 }
@@ -66,8 +68,6 @@ class Warrior {
     /// - throws: My warrior is already dead or the targeted warrior is already dead
     /// - note: There is a 10% chance that a trunk will open
     func attack(warrior: Warrior) throws {
-        let randomInt = Int.random(in: 1...100)
-        
         guard isAlive else {
             throw Error.selectedWarriorIsAlreadyDead
         }
@@ -76,26 +76,40 @@ class Warrior {
             throw Error.selectedWarriorTargetedIsAlreadyDead
         }
         
-        if randomInt < 90 {
-            warrior.currentLife = warrior.currentLife - weapon.damagePerHit - rawStrength
-            if warrior.currentLife <= lifeRange.lowerBound {
-                warrior.currentLife = lifeRange.lowerBound
-                warrior.isAlive = false
-                print("This warrior is dead 💀")
-            }
+        if let newSingleUsageWeapon = try? handleTrunkAppeareance() {
+            print("A trunk appears! It contains a weapon... It is \(newSingleUsageWeapon.description) !")
+            warrior.takeDamage(amount: getInflictingDamage(with: newSingleUsageWeapon))
         } else {
-            let trunkIsOpening = "A trunk appears! It contains a weapon... It is"
-            let trunk = Trunk()
-            let trunkOpened = trunk.open()
-            print("\(trunkIsOpening) \(trunkOpened.description) !")
-            warrior.currentLife = warrior.currentLife - trunkOpened.damagePerHit - rawStrength
-            
-            if warrior.currentLife <= lifeRange.lowerBound {
-                warrior.currentLife = lifeRange.lowerBound
-                warrior.isAlive = false
-                print("This warrior is dead 💀")
-            }
+            warrior.takeDamage(amount: getInflictingDamage(with: self.weapon))
         }
+    }
+    
+    
+    func getInflictingDamage(with weapon: Weapon) -> Int {
+        weapon.damagePerHit + rawStrength
+    }
+
+    func takeDamage(amount: Int) {
+        currentLife -= amount
+        
+        if currentLife <= lifeRange.lowerBound {
+            currentLife = lifeRange.lowerBound
+            print("This warrior is dead 💀")
+        }
+    }
+    
+    private func handleTrunkAppeareance() throws -> Weapon? {
+        guard hasFoundTrunk() else {
+            return nil
+        }
+        
+        let trunk = Trunk()
+        return try? trunk.open()
+    }
+    
+    private func hasFoundTrunk() -> Bool {
+        let randomInt = Int.random(in: 1...100)
+        return randomInt > 90
     }
     
     
