@@ -153,7 +153,7 @@ class Warrior {
     /// - returns: true if a trunk appears
     private func hasFoundTrunk() -> Bool {
         let randomInt = Int.random(in: 1...100)
-        return randomInt > 90
+        return randomInt > 50
     }
 }
 

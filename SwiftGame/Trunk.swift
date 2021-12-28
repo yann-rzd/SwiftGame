@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Trunk {
+final class Trunk {
     
     enum Error: Swift.Error {
         case noWeaponAreListedInTheGame
