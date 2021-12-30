@@ -123,6 +123,9 @@ final class Player {
     }
     
     
+    /// This function makes a loop on the function performWarriorAction
+    /// - parameter warriorMakingAction: The warrior that makes action.
+    /// - parameter targetWarrior: The warrior targeted
     private func loopChooseWarriorActionToPerform(warriorMakingAction: Warrior, targetWarrior: Warrior) {
         inputHelper.loopAction(action: { try warriorMakingAction.performWarriorAction(targetWarrior: targetWarrior) })
     }
