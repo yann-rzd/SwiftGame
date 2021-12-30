@@ -9,7 +9,7 @@ import Foundation
 
 final class Player {
     
-    // MARK: INTERNAL: properties
+    // MARK: -INTERNAL: properties
     
     let name: String
     
@@ -24,7 +24,7 @@ final class Player {
     }
     
     
-    // MARK: INTERNAL: methods
+    // MARK: -INTERNAL: methods
     
     /// This feature allows the player to play when it is his turn
     /// - parameter players: The array with all the players.
@@ -40,7 +40,7 @@ final class Player {
         let warriorMakingAction = loopChooseWarrior(from: self)
         let targetWarrior = loopChooseWarrior(from: targetPlayer)
         
-        try? warriorMakingAction.performWarriorAction(targetWarrior: targetWarrior)
+        loopChooseWarriorActionToPerform(warriorMakingAction: warriorMakingAction, targetWarrior: targetWarrior)
     }
     
     
@@ -57,17 +57,16 @@ final class Player {
             throw PlayerError.inputIsNotAnInteger
         }
         
-        guard number == 1 || number == 2 else {
-            throw PlayerError.inputIsNotOneOrTwo
-        }
-              
-        if number == 1 {
+        switch number {
+        case 1:
             for (index, player) in players.enumerated() {
                 print("This is the team of player \(index + 1), \(player.name):\n")
                 player.displayOwnTeam()
             }
-        } else if number == 2 {
+        case 2:
             print("So let's get down to business!\n")
+        default:
+            throw PlayerError.inputIsNotOneOrTwo
         }
     }
     
@@ -89,13 +88,17 @@ final class Player {
             $0.name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == name.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
         }
     }
+
     
-    
-    // MARK: PRIVATE: methods
+    // MARK: -PRIVATE: properties
     
     /// Get the functions of the InputHelper class
     private let inputHelper = InputHelper.shared
     
+    
+    // MARK: -PRIVATE: methods
+    
+  
     
     /// This function makes a loop on the function displayTeams
     /// - parameter players: [Player]
@@ -117,6 +120,11 @@ final class Player {
     /// - returns: Player
     private func loopChoosePlayer(from players: [Player]) -> Player {
         inputHelper.loopAction(action: { try choosePlayer(from: players) })
+    }
+    
+    
+    private func loopChooseWarriorActionToPerform(warriorMakingAction: Warrior, targetWarrior: Warrior) {
+        inputHelper.loopAction(action: { try warriorMakingAction.performWarriorAction(targetWarrior: targetWarrior) })
     }
     
     /// This function allows you to choose the warrior who will perform the action

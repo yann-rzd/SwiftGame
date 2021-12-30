@@ -8,7 +8,7 @@
 import Foundation
 
 /// Here is the list of all errors in the Player class
-enum PlayerError: Swift.Error {
+enum PlayerError: Swift.Error, LocalizedError, HasFatalError {
     case failedToReadTerminal
     case failedToConvertTerminalInputToInteger
     case inputIsNotAnInteger
@@ -16,7 +16,7 @@ enum PlayerError: Swift.Error {
     case selectedWarriorIsAlreadyDead
     case selectedPlayerIsAlreadyDead
     
-    var description: String {
+    var errorDescription: String? {
         switch self {
         case .failedToReadTerminal:
             return "The terminal failed to read your request ❌"
@@ -31,5 +31,9 @@ enum PlayerError: Swift.Error {
         case .selectedPlayerIsAlreadyDead:
             return "The chosen player is already dead ❌"
         }
+    }
+    
+    var isFatalError: Bool {
+        self == .failedToReadTerminal
     }
 }

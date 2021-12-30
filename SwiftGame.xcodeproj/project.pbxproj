@@ -26,6 +26,7 @@
 		E4D25A63274FFEF0001BC80F /* Weapon.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D25A5D274FFEF0001BC80F /* Weapon.swift */; };
 		E4D25A64274FFEF0001BC80F /* Warrior.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D25A5E274FFEF0001BC80F /* Warrior.swift */; };
 		E4D25A65274FFEF0001BC80F /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D25A5F274FFEF0001BC80F /* Game.swift */; };
+		E4D2CCD4277E15510073E302 /* HasFatalError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D2CCD3277E15510073E302 /* HasFatalError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -61,6 +62,7 @@
 		E4D25A5D274FFEF0001BC80F /* Weapon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Weapon.swift; sourceTree = "<group>"; };
 		E4D25A5E274FFEF0001BC80F /* Warrior.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Warrior.swift; sourceTree = "<group>"; };
 		E4D25A5F274FFEF0001BC80F /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		E4D2CCD3277E15510073E302 /* HasFatalError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasFatalError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				E44212322774C4BC00D2412F /* WarriorError.swift */,
 				E44212342774C87500D2412F /* InputHelperError.swift */,
 				E44212362774C98500D2412F /* TrunkError.swift */,
+				E4D2CCD3277E15510073E302 /* HasFatalError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4D2CCD4277E15510073E302 /* HasFatalError.swift in Sources */,
 				E4D25A61274FFEF0001BC80F /* Trunk.swift in Sources */,
 				E4D25A65274FFEF0001BC80F /* Game.swift in Sources */,
 				E4D25A64274FFEF0001BC80F /* Warrior.swift in Sources */,

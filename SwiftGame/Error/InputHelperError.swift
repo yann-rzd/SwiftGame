@@ -8,12 +8,12 @@
 import Foundation
 
 /// Here is the list of all errors in the Game class
-enum InputHelperError: Swift.Error {
+enum InputHelperError: Swift.Error, LocalizedError, HasFatalError {
     case failedToReadTerminal
     case inputIsNotAnInteger
     case failedToAccessElementDueToIndexOutOfBounds
     
-    var description: String {
+    var errorDescription: String? {
         switch self {
         case .failedToReadTerminal:
             return "The terminal failed to read your request ❌"
@@ -22,5 +22,9 @@ enum InputHelperError: Swift.Error {
         case .failedToAccessElementDueToIndexOutOfBounds:
             return "The element is not accessible because you have filled in an element that does not exist ❌"
         }
+    }
+    
+    var isFatalError: Bool {
+        self == .failedToReadTerminal
     }
 }

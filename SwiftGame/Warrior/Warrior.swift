@@ -38,36 +38,55 @@ class Warrior {
     func performWarriorAction(targetWarrior: Warrior) throws {
         print("Do you want to attack ⚔️ or heal 🩹? (press 1 for attack, 2 for heal")
         
-        while true {
-            guard let answer = readLine() else {
-                throw WarriorError.failedToReadTerminal
-            }
-            
-            guard let number = Int(answer) else {
-                throw WarriorError.inputIsNotAnInteger
-            }
-            
-            guard number == 1 || number == 2 else {
-                throw WarriorError.inputIsNotOneOrTwo
-            }
-
-            if number == 1 {
-                print("Your warrior attack ⚔️")
-                try attack(warrior: targetWarrior)
-                
-            } else if number == 2 {
-                print("Your warrior heal 🩹")
-                try heal(warrior: targetWarrior)
-            }
+        guard let answer = readLine() else {
+            throw WarriorError.failedToReadTerminal
+        }
+        
+        guard let number = Int(answer) else {
+            throw WarriorError.inputIsNotAnInteger
+        }
+        
+        switch number {
+        case 1: try attack(warrior: targetWarrior)
+        case 2: try heal(warrior: targetWarrior)
+        default: throw WarriorError.inputIsNotOneOrTwo
         }
     }
     
+    /// This function allows the warrior to heal another warrior
+    /// - parameter warrior: The warrior targeted.
+    /// - throws: My warrior is already dead or the targeted warrior is already dead
+    func heal(warrior: Warrior) throws {
+        print("Your warrior heal 🩹")
+        
+        guard isAlive == true else {
+            throw WarriorError.selectedWarriorIsAlreadyDead
+        }
+        
+        guard warrior.isAlive == true else {
+            throw WarriorError.selectedWarriorTargetedIsAlreadyDead
+        }
+        
+        warrior.earnLife(amount: healAmountOfLife)
+    }
+    
+    /// This function displays the warrior's information
+    func displayInformation() {
+        print("Type of warrior: \(warriorType)")
+        print("\(name)'s life = \(currentLife)")
+        print("\(name)'s weapon = \(weapon.description)\n")
+    }
+    
+    
+    // MARK: - PRIVATE: methods
     
     /// This function allows the warrior to attack another warrior
     /// - parameter warrior: The warrior targeted
     /// - throws: My warrior is already dead or the targeted warrior is already dead
     /// - note: There is a 10% chance that a trunk will open
-    func attack(warrior: Warrior) throws {
+    private func attack(warrior: Warrior) throws {
+        print("Your warrior attack ⚔️")
+        
         guard isAlive else {
             throw WarriorError.selectedWarriorIsAlreadyDead
         }
@@ -85,37 +104,6 @@ class Warrior {
     }
     
     
-    /// This function allows the warrior to heal another warrior
-    /// - parameter warrior: The warrior targeted.
-    /// - throws: My warrior is already dead or the targeted warrior is already dead
-    func heal(warrior: Warrior) throws {
-        
-        while true {
-            guard isAlive == true else {
-                throw WarriorError.selectedWarriorIsAlreadyDead
-            }
-            
-            guard warrior.isAlive == true else {
-                throw WarriorError.selectedWarriorTargetedIsAlreadyDead
-            }
-            
-            warrior.currentLife = warrior.currentLife + healAmountOfLife
-            if warrior.currentLife > lifeRange.upperBound {
-                warrior.currentLife = lifeRange.upperBound
-            }
-        }
-    }
-    
-    /// This function displays the warrior's information
-    func displayInformation() {
-        print("Type of warrior: \(warriorType)")
-        print("\(name)'s life = \(currentLife)")
-        print("\(name)'s weapon = \(weapon.description)\n")
-    }
-    
-    
-    // MARK: - PRIVATE: methods
-
     /// This function calculates the amount of damage inflicted
     /// - parameter weapon: The weapon used by the warrior
     /// - returns: the amount of damage inflicted
@@ -132,6 +120,14 @@ class Warrior {
         if currentLife <= lifeRange.lowerBound {
             currentLife = lifeRange.lowerBound
             print("This warrior is dead 💀")
+        }
+    }
+    
+    private func earnLife(amount: Int) {
+        currentLife += amount
+        
+        if currentLife > lifeRange.upperBound {
+            currentLife = lifeRange.upperBound
         }
     }
     

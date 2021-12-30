@@ -8,14 +8,17 @@
 import Foundation
 
 /// Here is the list of all errors in the Game class
-enum GameError: Swift.Error {
+enum GameError: Swift.Error, LocalizedError, HasFatalError {
+    
+    
     case failedToReadTerminal
     case failedToConvertTerminalInputToInteger
     case failedToAccessElementDueToIndexOutOfBounds
     case failedToCreateNameDueToWrongFormat
     case faildeToCreateNameDueToDuplication
+    case failedIsNotOneAndTwo
     
-    var description: String {
+    var errorDescription: String? {
         switch self {
         case .failedToReadTerminal:
             return "The terminal failed to read your request ❌"
@@ -27,6 +30,13 @@ enum GameError: Swift.Error {
             return "The name could not be created because the format is not respected ❌"
         case .faildeToCreateNameDueToDuplication:
             return "The name could not be created because it already exists ❌"
+        case .failedIsNotOneAndTwo:
+            return "failedIsNotOneAndTwo"
         }
+    }
+    
+    
+    var isFatalError: Bool {
+        self == .failedToReadTerminal
     }
 }

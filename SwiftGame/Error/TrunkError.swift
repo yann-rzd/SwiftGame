@@ -7,10 +7,10 @@
 
 import Foundation
 
-enum TrunkError: Swift.Error {
+enum TrunkError: Swift.Error, LocalizedError {
     case noWeaponAreListedInTheGame
     
-    var description: String {
+    var errorDescription: String? {
         switch self {
         case .noWeaponAreListedInTheGame:
             return "There are no weapons in the game ❌"

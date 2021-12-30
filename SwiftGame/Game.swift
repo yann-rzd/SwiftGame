@@ -7,54 +7,38 @@
 
 import Foundation
 
-
-
 final class Game {
     
     // MARK: - INTERNAL: methods
+    
     /// This function starts the game
     func start() {
-        print("Do you want to start a new game? (1 for yes, 2 for no)")
+        let isWillingToPlay = inputHelper.loopAction(action: { try askStartNewGame() })
+        guard isWillingToPlay else { return }
+        inputHelper.loopAction(action: { try askNumberOfPlayers() })
         
-        if let choice = readLine() {
-            switch choice {
-            case "1":
-                print("⚔️ You just started a new game ⚔️ \n")
-                
-                while true {
-                    do {
-                        try askNumberOfPlayers()
-                        for i in 1...numberOfPlayers {
-                            print("The player \(i) must create his team ✨\n")
-                            let newPlayer = createPlayer()
-                            players.append(newPlayer)
-                            for _ in 1...3 {
-                                let newWarrior = createWarrior()
-                                newPlayer.team.append(newWarrior)
-                            }
-                        }
-                        startFightPhase()
-                        displayWinner()
-                    } catch {
-                        if let error = error as? GameError {
-                            print(error.description)
-                        }
-                    }
-                }
-                
-            case "2":
-                print("Ok, see you next time!")
-            default:
-                print("I don't understand ❌")
+        for playerIndex in 1...numberOfPlayers {
+            print("The player \(playerIndex) must create his team ✨\n")
+            let newPlayer = createPlayer()
+            players.append(newPlayer)
+            
+            for _ in 1...numberOfWarriorPerTeam {
+                let newWarrior = createWarrior()
+                newPlayer.team.append(newWarrior)
             }
         }
+        
+        startFightPhase()
+        displayWinner()
     }
-    
+
     
     // MARK: - PRIVATE : properties
+    
     private var players: [Player] = []
     private var numberOfPlayers = 0
     private let numberOfPlayersRange = 2..<5
+    private let numberOfWarriorPerTeam = 3
     private var numberOfRounds = 0
     
     private var isFightPhaseOver: Bool {
@@ -65,9 +49,35 @@ final class Game {
         players.filter { !$0.isEliminated }
     }
     
+    private let inputHelper = InputHelper.shared
+    
     
     //MARK: - PRIVATE: methods
-    private let inputHelper = InputHelper.shared
+    
+    /// This function ask to the player if he wants to start a new game
+    /// - returns: Bool
+    private func askStartNewGame() throws -> Bool {
+        print("Do you want to start a new game? (1 for yes, 2 for no)")
+        
+        guard let answer = readLine() else {
+            throw GameError.failedToReadTerminal
+        }
+        
+        guard let number = Int(answer) else {
+            throw GameError.failedToConvertTerminalInputToInteger
+        }
+        
+        switch number {
+        case 1:
+            print("⚔️ You just started a new game ⚔️ \n")
+            return true
+        case 2:
+            print("Ok, see you next time!")
+            return false
+        default: throw GameError.failedIsNotOneAndTwo
+        }
+    }
+    
     
     /// This function asks for the number of players participating in the game.
     private func askNumberOfPlayers() throws {
@@ -127,7 +137,7 @@ final class Game {
                 return newPlayer
             } catch {
                 if let error = error as? GameError {
-                    print(error.description)
+                    print(error.errorDescription ?? "")
                 }
             }
         }
@@ -289,8 +299,8 @@ final class Game {
         
         print("The player \(winningPlayer.name) won the game ! 🎉🎉🎉🎉🎉🎉 Congratulations 🎉🎉🎉🎉🎉🎉\n")
         print("Number of rounds: \(numberOfRounds) 🥊\n")
-        print("Status of the team:"
-              + "\n\(winningPlayer.displayOwnTeam())")
+        print("Status of the team:")
+        winningPlayer.displayOwnTeam()
         print("\n**********************************************  End of the game **********************************************")
     }
 }

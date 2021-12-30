@@ -21,8 +21,13 @@ final class InputHelper {
                 let chosenElement = try action()
                 return chosenElement
             } catch {
-                if let error = error as? InputHelperError {
-                    print(error.description)
+                
+                if let error = error as? LocalizedError {
+                    print(error.errorDescription ?? "")
+                }
+                
+                if let error = error as? HasFatalError, error.isFatalError {
+                    fatalError()
                 }
             }
         }

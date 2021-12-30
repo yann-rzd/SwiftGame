@@ -8,14 +8,14 @@
 import Foundation
 
 /// Here is the list of all errors in the Warrior class
-enum WarriorError: Swift.Error {
+enum WarriorError: Swift.Error, LocalizedError, HasFatalError {
     case failedToReadTerminal
     case inputIsNotAnInteger
     case inputIsNotOneOrTwo
     case selectedWarriorIsAlreadyDead
     case selectedWarriorTargetedIsAlreadyDead
     
-    var description: String {
+    var errorDescription: String? {
         switch self {
         case .failedToReadTerminal:
             return "The terminal failed to read your request ❌"
@@ -28,5 +28,10 @@ enum WarriorError: Swift.Error {
         case .selectedWarriorTargetedIsAlreadyDead:
             return "The chosen opposing warrior is already dead ❌"
         }
+    }
+    
+    
+    var isFatalError: Bool {
+        self == .failedToReadTerminal
     }
 }
