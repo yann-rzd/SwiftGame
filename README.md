@@ -90,7 +90,7 @@ This application is developed according to the [MVC](https://medium.com/@joespin
 
 Run `git@hhttps://github.com/yann-rzd/SwiftGame.git`
 
-Open `Instagrid.xcodeproj`
+Open `SwiftGame.xcodeproj`
 
 Choose My Mac simulator
 
