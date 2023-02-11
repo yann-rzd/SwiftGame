@@ -48,7 +48,36 @@ Once the game is over, the number of turns and the list of characters of both te
 ### Step 4:
 - Each player must choose the weapon of his warrior
 
-### Each player must create 3 warriors
+Each player must create 3 warriors
+
+## ⚔️ Warriors
+### Characteristics of each warrior:
+- Name
+- Type of warrior
+- Description of the type of warrior
+- Ability of the warrior type
+- Life bar (100)
+- Weapon
+- Raw strength (0)
+- Healing points (15)
+
+### Each warrior can :
+- Attack: according to his weapon and his raw strength
+- Heal : according to his healing points
+
+### Examples:
+
+Type: Elf 🧝‍♀️
+- Description: Elves are nature spirits 
+- Ability: More life
+
+Type: Dwarf 👨‍🔧
+- Description: Dwarves are great builders
+- Ability : Less life but more raw strength
+
+Type: Wizard 🧙‍♂️
+- Description : Wizards are known for their knowledge and wisdom
+- Ability : More healing
 
 ## 💻 Requirements
 Reciplease is written in Swift 5 and supports iOS 13.0+. Built with Xcode 13.
@@ -59,8 +88,10 @@ This application is developed according to the [MVC](https://medium.com/@joespin
 ## 🕵️‍♂️ How to test 
 ### Clone the project
 
-Run `git@https://github.com/yann-rzd/Instagrid.git`
+Run `git@hhttps://github.com/yann-rzd/SwiftGame.git`
 
 Open `Instagrid.xcodeproj`
+
+Choose My Mac simulator
 
 Build & Run 🔥
