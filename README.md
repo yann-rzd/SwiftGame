@@ -85,7 +85,7 @@ Reciplease is written in Swift 5 and supports iOS 13.0+. Built with Xcode 13.
 ## 🍀 Architecture
 This application is developed according to the [MVC](https://medium.com/@joespinelli_6190/mvc-model-view-controller-ef878e2fd6f5) architecture.
 
-## 🕵️‍♂️ How to test 
+## 🕵️ How to test 
 ### Clone the project
 
 Run `git@hhttps://github.com/yann-rzd/SwiftGame.git`
